@@ -40,3 +40,15 @@ Each data file includes annotations that mark significant events:
 - **T2**: Onset of real or imagined movement of the right hand or both feet.
 
 These annotations are essential for analyzing brain activity specific to each task.
+
+
+### Data Preprocessing
+
+ICA
+L'ICA (Analyse en Composantes Indépendantes) est une technique de traitement du signal utilisée pour séparer les signaux EEG en différentes composantes indépendantes. Cette méthode est très efficace pour isoler les sources de bruit dans les données EEG, comme les artefacts oculaires, car elle permet de décomposer le signal mesuré en plusieurs sources, puis de supprimer celles correspondant aux artefacts.
+
+Séparation des sources : L'ICA prend les signaux EEG enregistrés par plusieurs électrodes et tente de les décomposer en différentes sources indépendantes. Certaines de ces sources sont des signaux cérébraux réels, tandis que d'autres sont des artefacts (par exemple, mouvements des yeux, clignements, etc.).
+
+Identification des artefacts oculaires : Après la décomposition, la fonction ica.find_bads_eog() cherche à identifier les composantes associées aux mouvements des yeux en calculant la corrélation entre les signaux des électrodes frontales (par exemple, Fpz) et les composantes indépendantes. Si une composante est fortement corrélée à ces signaux, elle est considérée comme un artefact oculaire.
+
+Suppression des artefacts : Une fois que les composantes associées aux artefacts oculaires sont identifiées, elles sont exclues lors de la reconstruction du signal EEG. Cela permet de corriger les données en supprimant uniquement les artefacts oculaires tout en conservant le signal cérébral.
