@@ -35,6 +35,26 @@ def main():
 
         fig = mne.viz.plot_events(events, sfreq=raw.info['sfreq'], first_samp=raw.first_samp, event_id=event_dict)
 
+        tmin, tmax = -1., 2.
+        epochs = mne.Epochs(rawFiltered, events, event_id=event_dict, tmin=tmin, tmax=tmax, baseline=None, preload=True)
+        labels = epochs.events[:, -1]
+
+        epochs.plot(n_channels=5, title="Epochs filtrés")
+
+        bands = {'alpha': (8, 12), 'beta': (12, 30), 'gamma': (30, 45)}
+        band_powers = FeatureExtraction.extract_band_power(epochs, bands)
+        # band_powers.items() retourne un dictionnaire où chaque clé est une bande de fréquence (alpha, beta, gamma).
+        # Chaque valeur est un tableau 2D où chaque ligne correspond à une epoch et chaque colonne à un canal EEG (electrode).
+
+        for band, power in band_powers.items():
+            print(f"{band} band power for each epoch:", power)
+
+        # freqs = np.logspace(*np.log10([6, 30]), num=15)
+        # wavelet_power = WaveletAnalysis.apply_wavelet_transform(epochs, freqs)
+
+        # # Visualisation de l'analyse par ondelettes
+        # wavelet_power.plot_topo(baseline=(-0.5, 0), mode='logratio', title='Analyse par ondelettes')
+
         return 
         raw_corrected = raw.copy()
         n_components = 20
