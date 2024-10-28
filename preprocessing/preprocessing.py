@@ -2,10 +2,60 @@ from typing import List
 import mne
 from mne.datasets import eegbci
 from mne.channels import make_standard_montage
+from errorClasses import PreprocessingError
 import matplotlib
 import matplotlib.pyplot as plt
 
 class Preprocessing:
+
+    @staticmethod
+    def initRawFiles2(subjects: List[int], executions: List[int]):
+        # Tâches séparées pour les mouvements réels et imaginés
+        run_execution = [3, 5, 7, 9, 11, 13]
+        run_imagery = [4, 6, 8, 10, 12, 14]
+
+        raw_files = []
+
+        for subject in subjects:
+            for exec_run, imag_run in zip(run_execution, run_imagery):
+                # Charger les données EEG pour les tâches réelles
+                raw_files_execution = [mne.io.read_raw_edf(f, preload=True, stim_channel='auto') for f in
+                                       eegbci.load_data(subject, exec_run)]
+                raw_execution = mne.concatenate_raws(raw_files_execution)
+
+                # Charger les données EEG pour les tâches imaginées
+                raw_files_imagery = [mne.io.read_raw_edf(f, preload=True, stim_channel='auto') for f in
+                                     eegbci.load_data(subject, imag_run)]
+                raw_imagery = mne.concatenate_raws(raw_files_imagery)
+
+                # Extraire les événements et créer des annotations pour les tâches réelles
+                events, _ = mne.events_from_annotations(raw_execution, event_id=dict(T0=1, T1=2, T2=3))
+                mapping_execution = {1: 'rest', 2: 'do/feet', 3: 'do/hands'}
+                annot_execution = mne.annotations_from_events(
+                    events=events, event_desc=mapping_execution, sfreq=raw_execution.info['sfreq'],
+                    orig_time=raw_execution.info['meas_date'])
+                raw_execution.set_annotations(annot_execution)
+
+                # Extraire les événements et créer des annotations pour les tâches imaginées
+                events, _ = mne.events_from_annotations(raw_imagery, event_id=dict(T0=1, T1=2, T2=3))
+                mapping_imagery = {1: 'rest', 2: 'imagine/feet', 3: 'imagine/hands'}
+                annot_imagery = mne.annotations_from_events(
+                    events=events, event_desc=mapping_imagery, sfreq=raw_imagery.info['sfreq'],
+                    orig_time=raw_imagery.info['meas_date'])
+                raw_imagery.set_annotations(annot_imagery)
+
+                # Ajouter les fichiers traités à la liste
+                raw_files.append(raw_execution)
+                raw_files.append(raw_imagery)
+
+        # Concaténer les fichiers bruts pour tous les sujets et exécutions
+        raw = mne.io.concatenate_raws(raw_files)
+
+        # Extraire les événements et les dictionnaires d'événements
+        events, event_dict = mne.events_from_annotations(raw)
+
+        return raw, events, event_dict
+    
     @staticmethod
     def initRawFiles(subjects: List[int], executions: List[int]):
         real_execution = [3, 5, 7, 9, 11, 13]
