@@ -1,0 +1,655 @@
+# process.py
+# coding: utf-8
+import matplotlib
+import matplotlib.pyplot as plt
+
+import mne
+
+from mne.io import concatenate_raws
+from mne.io.edf import read_raw_edf
+from mne.datasets import eegbci
+from mne import events_from_annotations, pick_types
+from mne.channels import make_standard_montage
+
+from mne.preprocessing import ICA
+
+mne.set_log_level("CRITICAL")
+matplotlib.use('TkAgg')
+DATA_SAMPLE_PATH = "../data/"
+
+
+def fetch_data(subjNumber):
+    # [3,7,11] #(open and close left or right fist)
+    # [4,8,12] #(imagine opening and closing left or right fist)
+
+    run_execution = [5, 9, 13]  # (open and close both fists or both feet)
+    run_imagery =  [6, 10, 14]  # (imagine opening and closing both fists or both feet)
+
+    raw_files = []
+
+    for i, j in zip(run_execution, run_imagery):
+        # Load EEG data for executing motor tasks
+        raw_files_execution = [read_raw_edf(f, preload=True, stim_channel='auto') for f in
+                               eegbci.load_data(subjNumber, i, DATA_SAMPLE_PATH)]
+        raw_execution = concatenate_raws(raw_files_execution)
+
+        # Load EEG data for imagining motor tasks
+        raw_files_imagery = [read_raw_edf(f, preload=True, stim_channel='auto') for f in
+                             eegbci.load_data(subjNumber, j, DATA_SAMPLE_PATH)]
+        raw_imagery = concatenate_raws(raw_files_imagery)
+
+        # Extract events and create annotations for executing motor tasks
+        events, _ = mne.events_from_annotations(raw_execution, event_id=dict(T0=1, T1=2, T2=3))
+        mapping = {1: 'rest', 2: 'do/feet', 3: 'do/hands'}
+        annot_from_events = mne.annotations_from_events(
+            events=events, event_desc=mapping, sfreq=raw_execution.info['sfreq'],
+            orig_time=raw_execution.info['meas_date'])
+        raw_execution.set_annotations(annot_from_events)
+
+        # Extract events and create annotations for imagining motor tasks
+        events, _ = mne.events_from_annotations(raw_imagery, event_id=dict(T0=1, T1=2, T2=3))
+        mapping = {1: 'rest', 2: 'imagine/feet', 3: 'imagine/hands'}
+        annot_from_events = mne.annotations_from_events(
+            events=events, event_desc=mapping, sfreq=raw_imagery.info['sfreq'],
+            orig_time=raw_imagery.info['meas_date'])
+        raw_imagery.set_annotations(annot_from_events)
+
+        # Append the processed raw data to the list
+        raw_files.append(raw_execution)
+        raw_files.append(raw_imagery)
+    raw = concatenate_raws(raw_files)
+
+    event, event_dict = events_from_annotations(raw)
+    picks = pick_types(raw.info, meg=False, eeg=True, stim=False, eog=False, exclude='bads')
+
+    return [raw, event, event_dict, picks]
+
+def prepare_data(raw, plotIt=False):
+    # raw.rename_channels(lambda x: x.strip('.'))
+    # montage = make_standard_montage('biosemi64')
+    # eegbci.standardize(raw)
+    # raw.set_montage(montage)
+    eegbci.standardize(raw)  # set channel names
+    montage = make_standard_montage("biosemi64")
+    raw.set_montage(montage, on_missing='ignore')
+
+    # plot
+    if plotIt:
+        montage = raw.get_montage()
+        p = montage.plot()
+        p = mne.viz.plot_raw(raw, scalings={"eeg": 75e-6})
+
+    return raw
+
+
+def filter_data(raw, plotIt=None):
+    # montage = make_standard_montage('standard_1020')
+    #
+    # data_filter = raw.copy()
+    # data_filter.set_montage(montage)
+    raw.filter(7, 30, fir_design='firwin', skip_by_annotation='edge')
+    if plotIt:
+        p = mne.viz.plot_raw(raw, scalings={"eeg": 75e-6})
+        plt.show()
+    return raw
+
+
+def filter_eye_artifacts(raw, picks, method, plotIt=None):
+    raw_corrected = raw.copy()
+    n_components = 20
+
+    ica = ICA(n_components=n_components, method=method, fit_params=None, random_state=97)
+
+    ica.fit(raw_corrected, picks=picks)
+
+    [eog_indicies, scores] = ica.find_bads_eog(raw, ch_name='Fpz', threshold=1.5)
+    ica.exclude.extend(eog_indicies)
+    ica.apply(raw_corrected, n_pca_components=n_components, exclude=ica.exclude)
+
+    if plotIt:
+        ica.plot_components()
+        ica.plot_scores(scores, exclude=eog_indicies)
+
+        plt.show()
+
+    return raw_corrected
+
+
+def fetch_events(data_filtered, tmin=-1., tmax=4.):
+    events, event_ids = events_from_annotations(data_filtered)
+    picks = mne.pick_types(data_filtered.info, meg=False, eeg=True, stim=False, eog=False, exclude='bads')
+    epochs = mne.Epochs(data_filtered, events, event_ids, tmin, tmax, proj=True,
+                        picks=picks, baseline=None, preload=True)
+    labels = epochs.events[:, -1]
+    return labels, epochs, picks
+
+
+def pre_process_data(subjectID, experiments):
+    [raw, event, event_dict, picks] = fetch_data(subjectID)
+
+    raw_prepared = prepare_data(raw)
+
+    raw_filtered = filter_data(raw_prepared)
+
+    # filter_eye_artifacts(raw_filtered, picks, "fastica")
+
+    labels, epochs, picks = fetch_events(raw_filtered)
+
+    # Extract only the epochs corresponding to the selected labels
+    selected_epochs = epochs[experiments]
+
+    # Get the data and events from the selected epochs
+    X = selected_epochs.get_data()
+    y = selected_epochs.events[:, -1] - 1
+
+    return [X, y, epochs]
+
+# train.py
+# coding: utf-8
+
+import matplotlib
+
+from mne.decoding import SPoC
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+
+from joblib import dump
+from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import ShuffleSplit, cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+
+matplotlib.use('TkAgg')
+
+
+def pipeline_creation(X, y, transformer1, transformer2=None, transformer3=None):
+    cv = ShuffleSplit(10, test_size=0.2, random_state=42)
+
+    lda = LDA(solver='lsqr', shrinkage='auto')
+    log_reg = LogisticRegression(penalty='l1', solver='liblinear', multi_class='auto')
+    rfc = RandomForestClassifier(n_estimators=100, random_state=42)
+
+    final_result = []
+
+    pipeline1 = make_pipeline(transformer1, lda)
+    scores1 = cross_val_score(pipeline1, X, y, cv=cv, n_jobs=1)
+    final_result.append(('LDA ', pipeline1, scores1))
+    if transformer2:
+        pipeline2 = make_pipeline(transformer2, log_reg)
+        scores2 = cross_val_score(pipeline2, X, y, cv=cv, n_jobs=1)
+        final_result.append(('LOGR', pipeline2, scores2))
+    if transformer3:
+        pipeline3 = make_pipeline(transformer3, rfc)
+        scores3 = cross_val_score(pipeline3, X, y, cv=cv, n_jobs=1)
+        final_result.append(('RFC', pipeline3, scores3))
+
+    # print(f"LinearDiscriminantAnalysis : accuracy {scores1.mean().round(2)}, std: {scores1.std().round(2)}")
+    # print(f"LogisticRegression         : accuracy {scores2.mean().round(2)}, std: {scores2.std().round(2)}")
+    # print(f"RandomForestClassifier     : accuracy {scores3.mean().round(2)}, std: {scores3.std().round(2)}")
+
+    return final_result
+
+
+def save_pipeline(pipe, epochs_data_train, labels, subjectID, experiment_name):
+    pipe = pipe.fit(epochs_data_train, labels)
+    fileName = f"../data/models/model_subject_{subjectID}_{experiment_name}.joblib"
+    dump(pipe, fileName)
+    # print(f"-> model saved to {fileName}")
+    return
+
+
+def train_data(X, y, transformer="CSP", run_all_pipelines=False):
+    if transformer == "CSP":
+        from mne.decoding import CSP
+        # using CSP transformers
+        csp1 = CSP()
+
+        if run_all_pipelines:
+            csp2 = CSP()
+            csp3 = CSP()
+            return pipeline_creation(X, y, csp1, csp2, csp3)
+
+        return pipeline_creation(X, y, csp1)
+
+    elif transformer == "FAST_CSP":
+        from CSP import CSP
+        # using custom CSP transformers
+        csp1 = CSP()
+
+        if run_all_pipelines:
+            csp2 = CSP()
+            csp3 = CSP()
+            return pipeline_creation(X, y, csp1, csp2, csp3)
+
+        return pipeline_creation(X, y, csp1)
+
+    elif transformer == "SPoC":
+        # using Spoc transformers
+        Spoc1 = SPoC(n_components=15, reg='oas', log=True, rank='full')
+
+        if run_all_pipelines:
+            Spoc2 = SPoC(n_components=15, reg='oas', log=True, rank='full')
+            Spoc3 = SPoC(n_components=15, reg='oas', log=True, rank='full')
+            return pipeline_creation(X, y, Spoc1, Spoc2, Spoc3)
+        else:
+            return pipeline_creation(X, y, Spoc1)
+    else:
+        raise ValueError(f"Unknown transformer, please enter valid one.")
+
+# CSP.py
+import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
+from scipy import linalg
+
+
+class CSP(BaseEstimator, TransformerMixin):
+    """
+    CSP implementation based on MNE implementation
+
+    https://github.com/mne-tools/mne-python/blob/f87be3000ce333ff9ccfddc45b47a2da7d92d69c/mne/decoding/csp.py
+    """
+
+    def __init__(self, n_components=4):
+        self.n_components = n_components
+        self.filters = None
+        self.n_classes = None
+        self.mean = None
+        self.std = None
+
+    def calculate_cov_(self, X, y):
+        """
+        Calculate the covariance matrices for each class.
+
+        Parameters:
+        - X: ndarray, shape (n_epochs, n_channels, n_times)
+            The EEG data.
+        - y: array, shape (n_epochs,)
+            The labels for each epoch.
+
+        Returns:
+        - covs: ndarray, shape (n_classes, n_channels, n_channels)
+            List of covariance matrices for each class.
+        """
+
+        _, n_channels, _ = X.shape
+        covs = []
+
+        # Iterate over each class
+        for l in self.n_classes:
+            # Select epochs corresponding to the current class
+            lX = X[np.where(y == l)]
+            # Transpose to have shape (n_channels, n_epochs, n_times)
+            lX = lX.transpose([1, 0, 2])
+            # Reshape to (n_channels, -1)
+            lX = lX.reshape(n_channels, -1)
+            # Calculate covariance matrix for the class
+            # The covariance matrix is a square matrix \
+            #   where each element represents the covariance \
+            #   between two corresponding channels (features) in the input data.
+            covs.append(np.cov(lX)) # type: 'numpy.ndarray'
+
+        return np.asarray(covs)
+
+    def calculate_eig_(self, covs):
+        """
+        Calculate eigenvalues and eigenvectors for pairwise combinations of covariance matrices.
+
+        Parameters:
+        -----------
+        covs : list of 2D arrays
+            List of covariance matrices for different classes.
+
+        Returns:
+        --------
+        tuple
+            Tuple containing lists of eigenvalues and eigenvectors.
+
+        """
+        eigenvalues, eigenvectors = [], []
+
+        # Iterate over each covariance matrix
+        for idx, cov in enumerate(covs):
+            # Iterate over remaining covariance matrices to create pairwise combinations
+            for iidx, compCov in enumerate(covs):
+                if idx < iidx:  # Consider each pair only once
+                    # Solve the generalized eigenvalue problem
+                    eigVals, eigVects = linalg.eig(cov, cov + compCov)
+                    # Sort eigenvalues in descending order
+                    sorted_indices = np.argsort(np.abs(eigVals - 0.5))[::-1]
+                    # Store sorted eigenvalues and corresponding eigenvectors
+                    eigenvalues.append(eigVals[sorted_indices])
+                    eigenvectors.append(eigVects[:, sorted_indices])
+
+        return eigenvalues, eigenvectors
+
+    def pick_filters(self, eigenvectors):
+        """
+        Select CSP filters based on the sorted eigenvectors.
+
+        Parameters:
+        -----------
+        eigenvectors : list of 2D arrays
+            List of eigenvectors corresponding to each pairwise combination of covariance matrices.
+
+        Returns:
+        --------
+        None
+            Updates the `filters` attribute with the selected CSP filters.
+
+        """
+        filters = []
+
+        # Iterate over each set of eigenvectors
+        for EigVects in eigenvectors:
+            # If filters is empty, directly assign the first set of eigenvectors
+            if filters == []:
+                filters = EigVects[:, :self.n_components]
+            else:
+                # Concatenate the current set of eigenvectors to the existing filters
+                filters = np.concatenate([filters, EigVects[:, :self.n_components]], axis=1)
+
+        # Transpose the filters matrix and store it in the `filters` attribute
+        self.filters = filters.T
+
+    def fit(self, X, y):
+        self.n_classes = np.unique(y)
+
+        if len(self.n_classes) < 2:
+            raise ValueError("n_classes must be >= 2")
+
+        # Calculate the covariance matrices for each class
+        covs = self.calculate_cov_(X, y)
+
+        # Calculate the eigenvalues and eigenvectors for the covariances
+        eigenvalues, eigenvectors = self.calculate_eig_(covs)
+
+        # Pick the CSP filters based on eigenvalues and eigenvectors
+        self.pick_filters(eigenvectors)
+
+        # Transform the input data using the selected CSP filters
+        X = np.asarray([np.dot(self.filters, epoch) for epoch in X])
+        X = (X ** 2).mean(axis=2)
+
+        # Standardize features
+        self.mean = X.mean(axis=0)
+        self.std = X.std(axis=0)
+
+    def transform(self, X):
+        # Transform the input data using the selected CSP filters
+        X = np.asarray([np.dot(self.filters, epoch) for epoch in X])
+
+        # Square and average along the time axis
+        X = (X ** 2).mean(axis=2)
+
+        # Standardize features
+        X -= self.mean
+        X /= self.std
+        """
+        example:
+            X = [[2, 4, 6],
+                 [1, 3, 5],
+                 [3, 5, 7]]
+            mean = [2, 4, 6]
+            X -= mean
+                
+            Result:
+            X = [[0, 0, 0],
+                 [-1, -1, -1],
+                 [1, 1, 1]]
+            std = [0.8165, 0.8165, 0.8165]
+            X /= std
+            
+            Result:
+            X = [[0, 0, 0],
+                 [-1.2247, -1.2247, -1.2247],
+                 [1.2247, 1.2247, 1.2247]]
+        """
+        return X
+
+    def fit_transform(self, X, y):
+        self.fit(X, y)
+        return self.transform(X)
+
+# ENUMS.py
+
+SUBJECTS = [1,2,3,4,5,6]
+MODES = ["train", "predict", "all"]
+TRANSFORMERS = ["FAST_CSP", "CSP", "SPoC"]
+
+EXPERIMENTS = {
+    "hands_vs_feet__action": ['do/hands', 'do/feet'],
+    "hands_vs_feet__imagery": ['imagine/hands', 'imagine/feet'],
+    "imagery_vs_action__hands": ['do/hands', 'imagine/hands'],
+    "imagery_vs_action__feets": ['do/feet', 'imagine/feet'],
+}
+
+EXPERIMENTS_IDS = {
+    'action': [5, 9, 13],
+    'imagery': [6, 10, 14]
+}
+
+# config.yaml.py
+SUBJECTS: [1]
+MODE: all
+TRANSFORMER: FAST_CSP
+EXPERIMENT: imagery_vs_action__feets
+
+# SUBJECTS:
+#    list of numbers between 1-100 or empty array
+#    examples:
+#       - [1,2,3,42] : subjects selected are 1,2,3,42 only
+#       - [] : all subjects will be selected from 1 to 109
+# MODE:
+#    train
+#    predict
+
+# TRANSFORMERS:
+#    CSP
+#    SPoC
+#    FAST_CSP
+
+# EXPERIMENTS:
+#    hands_vs_feet__action
+#    hands_vs_feet__imagery
+#    imagery_vs_action__hands
+#    imagery_vs_action__feets
+
+# mybci.py
+from parse_args import load_config
+from predict import predict
+from train import train_data, save_pipeline
+from process import pre_process_data
+from ENUMS import EXPERIMENTS
+import numpy as np
+
+import concurrent.futures
+import json
+import hashlib
+import time
+
+
+def hash_list_secure(my_list):
+    # Sort the list and convert it to a tuple
+    sorted_tuple = tuple(sorted(my_list))
+    # Use SHA-256 for a secure hash
+    hash_object = hashlib.sha256(str(sorted_tuple).encode())
+    return hash_object.hexdigest()
+
+
+def process_subject(subjectID, args, isSingleSubject=False):
+    # Record the start time
+    start_time_inner = time.time()
+    [X, y, epochs] = pre_process_data(subjectID, EXPERIMENTS[args['EXPERIMENT']])
+
+    result_inner = [0, 0]
+    output = []
+    output.append(f"----------------------------------------------[Subject {subjectID}]")
+    stats = {
+        'subject_id': subjectID,
+        'pipelines': [],
+        'cross_val_score': 0,
+        'accuracy': 0
+    }
+    if args['MODE'] == "train" or args['MODE'] == "all":
+        pipelines = train_data(X=X, y=y, transformer=args['TRANSFORMER'], run_all_pipelines=True)
+        best_pipeline = {'cross_val_score': -1}
+
+        for pipel in pipelines:
+            cross_val_score = pipel[2].mean()
+            pipeline_name = pipel[0]
+            pipeline = pipel[1]
+            output.append(f":--- [S{subjectID}] {pipeline_name} cross_val_score : {cross_val_score.round(2)}")
+
+            if cross_val_score > best_pipeline['cross_val_score']:
+                best_pipeline = {'name': pipeline_name, 'cross_val_score': cross_val_score, 'pipeline': pipeline}
+            stats['pipelines'].append((pipeline_name, cross_val_score))
+        save_pipeline(best_pipeline['pipeline'], X, y, subjectID, args['EXPERIMENT'])
+        result_inner[0] = best_pipeline['cross_val_score']
+        stats['cross_val_score'] = result_inner[0]
+
+    if args['MODE'] == "predict" or args['MODE'] == "all":
+        prediction_result = predict(X, y, subjectID, args['EXPERIMENT'], isSingleSubject)
+        output.append(
+            f":--- [S{subjectID}] Prediction accurracy: {'{:.2%}'.format(prediction_result).rstrip('0').rstrip('.')}")
+        result_inner[1] = prediction_result
+        stats['accuracy'] = result_inner[1]
+
+    # Record the end time
+    end_time_inner = time.time()
+
+    # Calculate the time cost
+    time_cost_inner = end_time_inner - start_time_inner
+    stats['time_cost'] = time_cost_inner
+    print(*output, sep="\n")
+    print(f":--- [S{subjectID}] time cost: {round(stats['time_cost'], 2)} seconds")
+    return stats
+
+
+def calculate_all_means(cross_val_scores, accuracy_scores, final_stats):
+    print("\n----------------------------[Mean Scores for all subjects]----------------------------")
+    if len(cross_val_scores) > 1:
+        print(f":--- Mean cross_val : {np.mean(cross_val_scores).round(2)}")
+        final_stats['mean_cross_val_score'] = np.mean(cross_val_scores)
+    if len(accuracy_scores) > 1:
+        print(f":--- Mean accuracy  : {np.mean(accuracy_scores).round(2)}")
+        final_stats['mean_accuracy'] = np.mean(accuracy_scores)
+
+
+def dumb_result_to_json(final_stats, args):
+    results_filename = \
+        f"../data/results/results-{args['MODE']}-{args['EXPERIMENT']}-{time.time()}-{args['TRANSFORMER']}-{final_stats['subjects_hash']}.json"
+
+    with open(results_filename, 'w', encoding='utf-8') as f:
+        json.dump(final_stats, f, ensure_ascii=False, indent=4)
+
+    print(f"result of training+prediction are stored in \n[{results_filename}]")
+
+
+def main():
+    # Record the start time
+    start_time = time.time()
+    args = load_config("config.yaml")
+    print(args)
+
+    print(
+        f"Experiment in study: ({EXPERIMENTS[args['EXPERIMENT']][0]}) <--VS--> ({EXPERIMENTS[args['EXPERIMENT']][1]})")
+    CALC_MEAN_FOR_ALL = True if len(args['SUBJECTS']) > 1 else False
+
+    cross_val_scores = []
+    accuracy_scores = []
+    final_stats = {
+        'subjects_hash': "all" if len(args['SUBJECTS']) == 109 else ''.join(map(str, args['SUBJECTS'])),
+        'config': args,
+        'events': EXPERIMENTS[args['EXPERIMENT']],
+        'subjects': [],
+        'time_unit': "seconds"
+    }
+
+    for subjectID in args['SUBJECTS']:
+        result = process_subject(subjectID, args, isSingleSubject=not CALC_MEAN_FOR_ALL)
+        if args['MODE'] == "train" or args['MODE'] == "all":
+            cross_val_scores.append(result['cross_val_score'])
+
+        if args['MODE'] == "predict" or args['MODE'] == "all":
+            accuracy_scores.append(result['accuracy'])
+
+        final_stats['subjects'].append(result)
+
+    if CALC_MEAN_FOR_ALL:
+        calculate_all_means(cross_val_scores, accuracy_scores, final_stats)
+
+    # store elapsed time to final report file
+    final_stats['time_cost'] = time.time() - start_time
+    print(f":--- Time Elapsed for all : {round(final_stats['time_cost'], 2)}")
+
+    dumb_result_to_json(final_stats, args)
+
+
+if __name__ == "__main__":
+    main()
+
+# parse_args.py
+
+import yaml
+from ENUMS import SUBJECTS, MODES, TRANSFORMERS, EXPERIMENTS
+
+def load_config(file_path):
+    with open(file_path, 'r') as file:
+        config = yaml.safe_load(file)
+
+    if not config:
+        raise ValueError(f"No params are present in the config.yaml")
+    # Check if required parameters are present
+    required_parameters = ['SUBJECTS', 'MODE', 'TRANSFORMER', 'EXPERIMENT']  # Add your required parameters here
+    
+    for param in required_parameters:
+        if param not in config:
+            raise ValueError(f"Required parameter '{param}' is missing in the YAML file.")
+
+    # Check if the values of the parameters match the predefined enums
+    if not isinstance(config['SUBJECTS'], list):
+        raise ValueError("SUBJECT must be an array.")
+
+    for subjectID in config['SUBJECTS']:
+        if subjectID < 1 or subjectID > 109:
+            raise ValueError(f"Invalid SUBJECT value: {subjectID}. Valid values are {SUBJECTS}")
+    if not config['SUBJECTS']:
+        config['SUBJECTS'] = list(range(1, 110))
+    else:
+        config['SUBJECTS'] = list(set(config['SUBJECTS']))
+        config['SUBJECTS'].sort()
+
+    if config['MODE'] not in MODES:
+        raise ValueError(f"Invalid MODE value: {config['MODE']}. Valid values are {MODES}")
+
+    if config['TRANSFORMER'] not in TRANSFORMERS:
+        raise ValueError(f"Invalid TRANSFORMER value: {config['TRANSFORMER']}. Valid values are {TRANSFORMERS}")
+
+    if config['EXPERIMENT'] not in EXPERIMENTS.keys():
+        raise ValueError(f"Invalid EXPERIMENT value: {config['EXPERIMENT']}. Valid values are {EXPERIMENTS}")
+
+    return config
+
+# predict.py
+
+from joblib import load
+import numpy as np
+
+def predict(X, y , subjectId, experiment_name, log=False):
+    PREDICT_MODEL = f"../data/models/model_subject_{subjectId}_{experiment_name}.joblib"
+    try:
+        clf = load(PREDICT_MODEL)
+    except FileNotFoundError as e:
+        raise Exception(f"File not found: {PREDICT_MODEL}")
+
+    scores = []
+    if log:
+        print("epoch_nb =  [prediction]    [truth]    equal?")
+        print("---------------------------------------------")
+    for n in range(X.shape[0]):
+        pred = clf.predict(X[n:n + 1, :, :])[0]
+        truth = y[n:n + 1][0]
+        if log:
+            print(f"epoch_{n:2} =      [{pred}]           [{truth}]      {'' if pred == truth else False}")
+        scores.append(1 - np.abs(pred - y[n:n + 1][0]))
+    # print("Mean acc= ", str(np.mean(scores).round(2)*100) + "%")
+    return np.mean(scores).round(3)

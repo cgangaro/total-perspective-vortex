@@ -2,6 +2,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from mne.decoding import CSP
 import numpy as np
 
+
 class CSPTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, n_components=4, reg=None, log=True, cov_est='concat'):
         self.n_components = n_components

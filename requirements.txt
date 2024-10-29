@@ -2,4 +2,4 @@ mne
 matplotlib
 tornado
 scikit-learn
-sklearn
+seaborn
