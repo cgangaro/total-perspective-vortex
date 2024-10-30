@@ -1,10 +1,13 @@
-from typing import List
+
 import mne
+import os
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+from typing import List
 from mne.datasets import eegbci
 from mne.channels import make_standard_montage
 from errorClasses import PreprocessingError
-import matplotlib
-import matplotlib.pyplot as plt
 
 
 class Preprocessing:
@@ -67,23 +70,18 @@ class Preprocessing:
         plt.tight_layout()
         plt.show()
     
-    # @staticmethod
-    # def deleteBadEog(raw, picks, method, plotIt=None):
-    #     raw_corrected = raw.copy()
-    #     n_components = 20
-
-    #     ica = ICA(n_components=n_components, method=method, fit_params=None, random_state=97)
-
-    #     ica.fit(raw_corrected, picks=picks)
-
-    #     [eog_indicies, scores] = ica.find_bads_eog(raw, ch_name='Fpz', threshold=1.5)
-    #     ica.exclude.extend(eog_indicies)
-    #     ica.apply(raw_corrected, n_pca_components=n_components, exclude=ica.exclude)
-
-    #     if plotIt:
-    #         ica.plot_components()
-    #         ica.plot_scores(scores, exclude=eog_indicies)
-
-    #         plt.show()
-
-    #     return raw_corrected
+    @staticmethod
+    def loadPreprocessedData(subjects, experiments, data_dir='data'):
+        data = {}
+        for exp_id in experiments:
+            nbSubjects = len(subjects)
+            file_path = os.path.join(data_dir, f"experiment_{exp_id}_n{nbSubjects}.npz")
+            if not os.path.exists(file_path):
+                print(f"Le fichier {file_path} n'existe pas.")
+                data[exp_id] = {'X': np.array([]), 'labels': np.array([])}
+                continue
+            loaded = np.load(file_path, allow_pickle=True)
+            data_exp = loaded['arr_0'].item()
+            data[exp_id] = data_exp
+            print(f"Données chargées pour l'expérience {exp_id}: {data_exp['X'].shape[0]} échantillons")
+        return data

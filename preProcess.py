@@ -1,10 +1,12 @@
 import numpy as np
 import mne
 import os
+from mne import pick_types
 from preprocessing.preprocessing import Preprocessing
 from preprocessing.newPreprocessing import NewPreprocessing
 from preprocessing.featureExtraction import FeatureExtraction
 from dataclasses import dataclass
+from sklearn.model_selection import train_test_split
 
 
 @dataclass
@@ -29,8 +31,13 @@ class Configuration:
 
 
 def preProcess(subjects, experiments, config: Configuration, save_to_file=False, output_dir='data', name='default'):
+    if config.loadFromFile:
+        return Preprocessing.loadPreprocessedData(
+            subjects,
+            experiments,
+            data_dir=config.dataDir
+        )
     data = {}
-
     for exp_id, runs in experiments.items():
         X_list = []
         labels_list = []
@@ -42,6 +49,8 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
 
         for subject in subjects:
             print(f"  Sujet {subject}")
+            if subject == 87 or subject == 88:
+                continue
             try:
                 raw, events, event_id = NewPreprocessing.load_all_data([subject], runs)
             except Exception as e:
@@ -61,11 +70,28 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
                 notch_freq=config.preProcess.notchFreq
             )
 
+            current_sfreq = rawFiltered.info['sfreq']
+            desired_sfreq = 160.0  # Fréquence d'échantillonnage cible
+            if current_sfreq != desired_sfreq:
+                print(f"Rééchantillonnage des données de {current_sfreq} Hz à {desired_sfreq} Hz pour le sujet {subject}")
+                rawFiltered.resample(desired_sfreq, npad="auto")
+
             # fig = mne.viz.plot_events(events, sfreq=raw.info['sfreq'], first_samp=raw.first_samp, event_id=event_id)
 
+            picks = pick_types(rawFiltered.info, meg=False, eeg=True, stim=False, eog=False, exclude='bads')
+            # pick_types permet de recuperer les canaux de notre analyse. Il permet de filtrer les canaux que l'on veut garder.
+            # raw.info contient les informations sur les canaux de notre enregistrement, comme leur nom, leur type (EEG, EOG etc...),
+            # leur frequence d'echantillonnage, etc...
+            # meg permet de selectionner les canaux MEG (Magnétoencéphalographie), qui correspondent à des capteurs de champs magnétiques.
+            # eeg permet de selectionner les canaux EEG, qui correspondent aux electrodes placées sur le cuir chevelu.
+            # stim permet de selectionner les canaux de stimulation, qui sont utilises pour marquer les evenements.
+            # Les evenements peuvent etre des stimuli visuels ou auditifs par exemple.
+            # eog permet de selectionner les canaux EOG, qui permettent de detecter les mouvements oculaires.
+            # exclude permet de selectionner les canaux à exclure, ici on exclut les canaux marqués comme mauvais.
             if config.preProcess.ICA:
                 rawFiltered = FeatureExtraction.ICAProcess(
                     rawFiltered,
+                    picks,
                     config.preProcess.nIcaComponents,
                     config.preProcess.EOG
                 )
@@ -79,6 +105,8 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
                 event_id=event_id,
                 tmin=tmin,
                 tmax=tmax,
+                proj=True,
+                picks=picks,
                 baseline=None,
                 preload=True
             )
@@ -101,7 +129,7 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
         X_exp = np.concatenate(X_list)
         labels_exp = np.concatenate(labels_list)
 
-        data[exp_id] = {'X': X_exp, 'labels': labels_exp}
+        data[exp_id] = {'X': X_exp.astype(np.float64), 'labels': labels_exp}
         print(f"Données prétraitées pour l'expérience {exp_id} : {X_exp.shape[0]} échantillons")
 
         if save_to_file:
@@ -112,3 +140,22 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
             print(f"Données enregistrées pour l'expérience {exp_id} dans {output_path}")
 
     return data
+
+    
+
+def splitData(data, experiments):
+    dataSplit = {}
+    for expId in experiments:
+        expData = data[expId]
+        X = expData['X']
+        labels = expData['labels']
+        print(f"Expérience {expId} - X shape: {X.shape}, labels shape: {labels.shape} - T1 count: {np.sum(labels == 0)}, T2 count: {np.sum(labels == 1)}")
+        X_train, X_temp, y_train, y_temp = train_test_split(X, labels, test_size=0.4, random_state=42)
+        X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+        print(f"Expérience {expId} - Train: {X_train.shape}, Validation: {X_val.shape}, Test: {X_test.shape}")
+        dataSplit[expId] = {
+            'X_train': X_train, 'labels_train': y_train,
+            'X_validation': X_val, 'labels_validation': y_val,
+            'X_test': X_test, 'labels_test': y_test
+        }
+    return dataSplit

@@ -23,9 +23,9 @@ def main():
     preProcessConfig = PreProcessConfiguration(
         ICA=True,
         EOG=True,
-        montageKind="standard_1020",
+        montageKind="standard_1005",
         lowCutoff=8.,
-        highCutoff=32.,
+        highCutoff=40.,
         notchFreq=60,
         nIcaComponents=20,
         useRestMoment=False
@@ -34,14 +34,14 @@ def main():
         preProcess=preProcessConfig,
         CSPTransformerNComponents=4,
         dataDir='data',
-        saveToFile=True,
-        loadFromFile=True
+        saveToFile=False,
+        loadFromFile=False
     )
-    # subjects = [1]
+    subjects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     subjects1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     subjects2 = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
     subjects3 = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
-    subjects = subjects1 + subjects2
+    # subjects = subjects1 + subjects2
     # experiments = {
     #     0: [1, 2],     # Baseline
     #     1: [3, 7, 11], # Mouvements main gauche
@@ -52,8 +52,8 @@ def main():
     # }
     experiments = {
         0: [],     # Baseline
-        1: [], # Mouvements main gauche
-        2: [4, 8, 12], # Mouvements main droite
+        1: [3, 7, 11], # Mouvements main gauche
+        2: [], # Mouvements main droite
         3: [], # Mouvements des pieds
         4: [],# Mouvements de la langue
         5: []    # Autres expériences si applicables
@@ -109,19 +109,19 @@ def main():
     }
 
     classifiers = {
-        'LDA': LDA(),
-        # 'RandomForest': RandomForestClassifier(n_estimators=150, random_state=42)
+        # 'LDA': LDA(),
+        'RandomForest': RandomForestClassifier(n_estimators=150, random_state=42)
     }
 
-    cv = ShuffleSplit(n_splits=8, test_size=0.3, random_state=42)
+    cv = ShuffleSplit(n_splits=10, test_size=0.4, random_state=42)
 
     all_exp_scores = []
     generalScores = []
     print("EVALUATING MODELS")
     for exp_id, data in experimentData.items():
         print(f"Expérience {exp_id}")
-        if data is None:
-            print(f"Expérience {exp_id} ignorée car aucune donnée n'est disponible.")
+        if data is None or 'X' not in data or data['X'] is None or data['X'].size == 0:
+            print(f"Aucune donnée n'est disponible pour l'expérience {exp_id}")
             continue
         X = data['X'].astype(np.float64)
         labels = data['labels']
@@ -136,7 +136,7 @@ def main():
 
                 # Validation croisée LeaveOneGroupOut
                 # logo = LeaveOneGroupOut()
-                scores = cross_val_score(pipeline, X, labels, cv=cv, scoring='accuracy', n_jobs=8)
+                scores = cross_val_score(pipeline, X, labels, cv=cv, scoring='accuracy', n_jobs=1)
                 mean_score = scores.mean()
                 all_exp_scores.append(mean_score)
                 print(f"Expérience {exp_id} - {transformer_name} + {classifier_name}: précision moyenne = {mean_score:.4f}")
@@ -158,3 +158,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ['Expérience 1 - CSP + RandomForest: précision moyenne = 0.4737\n', 'Expérience 1 - SPoC + RandomForest: précision moyenne = 0.4713\n']
+# ['Expérience 2 - CSP + RandomForest: précision moyenne = 0.4643\n', 'Expérience 2 - SPoC + RandomForest: précision moyenne = 0.4637\n']
+# ['Expérience 3 - CSP + RandomForest: précision moyenne = 0.5654\n', 'Expérience 3 - SPoC + RandomForest: précision moyenne = 0.5650\n']
+# ['Expérience 4 - CSP + RandomForest: précision moyenne = 0.5178\n', 'Expérience 4 - SPoC + RandomForest: précision moyenne = 0.4883\n']
