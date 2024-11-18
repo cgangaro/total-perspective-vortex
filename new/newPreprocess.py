@@ -10,9 +10,9 @@ def newPreprocess(subjects):
     print("newPreprocess")
     experiments = {
         0: [3, 7, 11],
-        1: [4, 8, 12],
-        2: [5, 9, 13],
-        3: [6, 10, 14],
+        # 1: [4, 8, 12],
+        # 2: [5, 9, 13],
+        # 3: [6, 10, 14],
     }
     dataPreprocessed = []
     for expId in experiments:
@@ -41,8 +41,12 @@ def getExperimentData(subjects, runs):
             raw_execution.set_annotations(annot_from_events)
             raw_files.append(raw_execution)
 
+    target_sfreq = 160
+    for i in range(len(raw_files)):
+        if raw_files[i].info['sfreq'] != target_sfreq:
+            raw_files[i].resample(target_sfreq, npad="auto")
     raw = concatenate_raws(raw_files)
-
+    print("End of raw concatenation")
     events, event_dict = events_from_annotations(raw)
     print(raw.info)
     print(event_dict)
@@ -54,6 +58,7 @@ def getExperimentData(subjects, runs):
     eegbci.standardize(raw)  # set channel names
     montage = make_standard_montage('standard_1005')
     raw.set_montage(montage)
+    print("Montage set")
     # raw.plot(n_channels=3, duration = 2.5)
     # # plt.show()
     # raw.plot_psd(average=True)
@@ -63,11 +68,13 @@ def getExperimentData(subjects, runs):
     # fig = mne.viz.plot_events(events, sfreq=raw.info['sfreq'], first_samp=raw.first_samp, event_id=event_dict)
     # fig.subplots_adjust(right=0.7)  # make room for legend
     raw.filter(5., 40., fir_design='firwin', skip_by_annotation='edge')
+    print("Filtering done")
     # raw.plot_psd(average=True)
     # plt.show()
     # raw.plot_psd(average=False)
     # plt.show()
-    raw_fastica = run_ica(raw, 'fastica', picks)
+    # raw_fastica = run_ica(raw, 'fastica', picks)
+    # print("ICA done")
     # raw.plot(n_channels=25, start=0, duration=40,scalings=dict(eeg=250e-6))
     # raw_fastica.plot(n_channels=25, start=0, duration=40,scalings=dict(eeg=250e-6))
     # plt.show()
@@ -86,7 +93,7 @@ def getExperimentData(subjects, runs):
 
 def run_ica(raw, method, picks, fit_params=None):
     raw_corrected = raw.copy()
-    n_components=20
+    n_components=10
     
     ica = ICA(n_components=n_components, method=method, fit_params=fit_params, random_state=97)
     # t0 = time()

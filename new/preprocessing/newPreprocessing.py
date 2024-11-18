@@ -7,9 +7,9 @@ class NewPreprocessing:
     @staticmethod
     def loadRawFile(subject: int, run: int):
         # Charger les données pour un sujet et un run spécifique
-        raw_fnames = eegbci.load_data(subject, runs=[run])
+        raw_fnames = eegbci.load_data(subject, runs=[run], verbose="ERROR")
         raw_files = [mne.io.read_raw_edf(f, preload=True, stim_channel='auto') for f in raw_fnames]
-        raw = mne.concatenate_raws(raw_files)
+        raw = mne.concatenate_raws(raw_files, verbose="ERROR")
         # Standardiser les annotations pour que tous les runs aient les mêmes event_id
         eegbci.standardize(raw)
         return raw
