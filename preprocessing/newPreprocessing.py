@@ -27,6 +27,4 @@ class NewPreprocessing:
                 raw_files.append(raw)
         # Concaténer tous les fichiers raw
         raw = mne.concatenate_raws(raw_files)
-        # Extraire les événements et les event_id
-        events, event_id = mne.events_from_annotations(raw)
-        return raw, events, event_id
+        return raw

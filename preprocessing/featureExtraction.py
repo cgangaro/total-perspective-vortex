@@ -37,7 +37,7 @@ class FeatureExtraction:
         # On entraine l'ICA sur nos données.
         # ica.plot_components()
         if useEOG:
-            eog_indicies, scores = ica.find_bads_eog(raw_corrected, ch_name='Fpz', threshold=1.5)
+            eog_indicies, scores = ica.find_bads_eog(raw_corrected, ch_name=['Fpz', 'Fp1', 'Fp2', 'AF7', 'AF8'], threshold=1.5)
             # find_bads_eog permet de trouver les composantes ICA lies à des artefacts oculaires.
             # ch_name est le nom du canal EOG, ici Fpz correspond a une region proche des yeux, il capte donc fortement
             # les mouvements oculaires.

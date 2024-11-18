@@ -16,37 +16,6 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 matplotlib.use("webagg")
 
-
-def getModelFit(values, labels, pipeline, name, expId):
-    if values is None or values.size == 0:
-        raise ValueError(f"Aucune donnée {name} n'est disponible pour l'expérience {expId}")
-    if labels is None or labels.size == 0:
-        raise ValueError(f"Aucune étiquette {name} n'est disponible pour l'expérience {expId}")
-    if labels.size != values.shape[0]:
-        raise ValueError(f"Les étiquettes {name} ne correspondent pas aux données pour l'expérience {expId}")
-    print(f"Entraînement du modèle pour l'expérience {expId}. Taille des données: {values.shape}, taille des étiquettes: {labels.shape}")
-    values = values.astype(np.float64)
-    pipeline.fit(values, labels)
-    return pipeline
-
-
-def getAccuracyScore(values, labels, pipeline, name, expId):
-    if values is None or values.size == 0:
-        print(f"Aucune donnée {name} n'est disponible pour l'expérience {expId}")
-        raise ValueError(f"Aucune donnée {name} n'est disponible pour l'expérience {expId}")
-    if labels is None or labels.size == 0:
-        print(f"Aucune étiquette {name} n'est disponible pour l'expérience {expId}")
-        raise ValueError(f"Aucune étiquette {name} n'est disponible pour l'expérience {expId}")
-    if labels.size != values.shape[0]:
-        print(f"Les étiquettes {name} ne correspondent pas aux données pour l'expérience {expId}")
-        raise ValueError(f"Les étiquettes {name} ne correspondent pas aux données pour l'expérience {expId}")
-    prediction = pipeline.predict(values)
-    print("prediction: ", prediction)
-    print("labels: ", labels)
-    accuracy = accuracy_score(labels, prediction)
-    return accuracy
-
-
 def main():
     print("LAUNCHING MAIN")
     preProcessConfig = PreProcessConfiguration(

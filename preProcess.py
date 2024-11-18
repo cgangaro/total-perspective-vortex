@@ -49,10 +49,8 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
 
         for subject in subjects:
             print(f"  Sujet {subject}")
-            if subject == 87 or subject == 88:
-                continue
             try:
-                raw, events, event_id = NewPreprocessing.load_all_data([subject], runs)
+                raw = NewPreprocessing.load_all_data([subject], runs)
             except Exception as e:
                 print(f"Impossible de charger les données pour le sujet {subject} et les runs {runs}: {e}")
                 continue
@@ -98,6 +96,7 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
 
             # EPOCHS
             events, event_id = mne.events_from_annotations(rawFiltered)
+            print("event_id: ", event_id)
             tmin, tmax = -1., 4.
             epochs = mne.Epochs(
                 rawFiltered,
@@ -110,15 +109,24 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
                 baseline=None,
                 preload=True
             )
+            labels = epochs.events[:, -1]
+            # print(f"Unique labels: {np.unique(labels)}")
+            # print(f"Epochs shape: {epochs.get_data().shape}")
+            # print(f"Labels shape: {labels.shape}")
+            epochs = epochs[['T1', 'T2']]
+            # print(f"Epochs shape after selection: {epochs.get_data().shape}")
+            labels = epochs.events[:, -1]
+            # print(f"Unique labels after selection: {np.unique(labels)}")
+            # print(f"Labels shape after selection: {labels.shape}")
 
-            if config.preProcess.useRestMoment:
-                epochs = epochs[['T0', 'T1', 'T2']]
-                labels = epochs.events[:, -1] - 1
-            else:
-                epochs = epochs[['T1', 'T2']]
-                labels = epochs.events[:, -1] - 2
+            # if config.preProcess.useRestMoment:
+            #     epochs = epochs[['T0', 'T1', 'T2']]
+            #     labels = epochs.events[:, -1] - 1
+            # else:
+            #     epochs = epochs[['T1', 'T2']]
+            #     labels = epochs.events[:, -1] - 2
 
-            X = epochs.get_data().astype(np.float64)
+            X = epochs.get_data()
             if len(labels) == 0 or len(X) == 0:
                 print(f"Pas d'epochs pour le sujet {subject} dans l'expérience {exp_id}")
                 continue
@@ -129,7 +137,7 @@ def preProcess(subjects, experiments, config: Configuration, save_to_file=False,
         X_exp = np.concatenate(X_list)
         labels_exp = np.concatenate(labels_list)
 
-        data[exp_id] = {'X': X_exp.astype(np.float64), 'labels': labels_exp}
+        data[exp_id] = {'X': X_exp, 'labels': labels_exp}
         print(f"Données prétraitées pour l'expérience {exp_id} : {X_exp.shape[0]} échantillons")
 
         if save_to_file:
@@ -150,7 +158,15 @@ def splitData(data, experiments):
         X = expData['X']
         labels = expData['labels']
         print(f"Expérience {expId} - X shape: {X.shape}, labels shape: {labels.shape} - T1 count: {np.sum(labels == 0)}, T2 count: {np.sum(labels == 1)}")
-        X_train, X_temp, y_train, y_temp = train_test_split(X, labels, test_size=0.4, random_state=42)
+        if X.shape[0] == 0 or labels.shape[0] == 0:
+            print(f"Expérience {expId} - Pas de données")
+            dataSplit[expId] = {
+                'X_train': np.array([]), 'labels_train': np.array([]),
+                'X_validation': np.array([]), 'labels_validation': np.array([]),
+                'X_test': np.array([]), 'labels_test': np.array([])
+            }
+            continue
+        X_train, X_temp, y_train, y_temp = train_test_split(X, labels, test_size=0.2, random_state=42)
         X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
         print(f"Expérience {expId} - Train: {X_train.shape}, Validation: {X_val.shape}, Test: {X_test.shape}")
         dataSplit[expId] = {
@@ -158,4 +174,22 @@ def splitData(data, experiments):
             'X_validation': X_val, 'labels_validation': y_val,
             'X_test': X_test, 'labels_test': y_test
         }
+    return dataSplit
+
+def newSplitData(data, experiments):
+    dataSplit = {}
+    for expId in experiments:
+        expData = data[expId]
+        X = expData['X']
+        labels = expData['labels']
+        print(f"Expérience {expId} - X shape: {X.shape}, labels shape: {labels.shape}")
+
+        if X.shape[0] == 0 or labels.shape[0] == 0:
+            print(f"Expérience {expId} - Pas de données")
+            dataSplit[expId] = {'X': np.array([]), 'labels': np.array([])}
+            continue
+        # Pour validation croisée, on garde tout ensemble.
+        dataSplit[expId] = {'X': X, 'labels': labels}
+        print(f"Expérience {expId} - Données préparées pour validation croisée : {X.shape}, Labels : {labels.shape}")
+    
     return dataSplit

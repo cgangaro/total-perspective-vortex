@@ -35,7 +35,7 @@ from sklearn.model_selection import train_test_split
 
 def main():
 
-    subject = [1] # 1, 4
+    subject = [1, 2, 3] # 1, 4
     run_execution = [5, 9, 13]
     run_imagery = [6, 10, 14]
 
@@ -105,7 +105,7 @@ def main():
     print("Epochs data shape : ", epochs.get_data().shape)
     labels = epochs.events[:, -1] - 1
     print(labels)
-    return 
+
     # evoked = epochs['imagine/feet'].average()
     # evoked.plot_joint(title='Average Reference', show=False)
     # plt.show()
@@ -115,54 +115,54 @@ def main():
 
     score_pipeline = -1
     models_pipeline = None
-    epochs_data = epochs.get_data().astype(np.float64)
-    # Define a monte-carlo cross-validation generator (reduce variance):
-    scores = []
-    epochs_data = epochs.get_data()
-    cv = ShuffleSplit(10, test_size=0.4, random_state=42)
+    # epochs_data = epochs.get_data().astype(np.float64)
+    # # Define a monte-carlo cross-validation generator (reduce variance):
+    # scores = []
+    # epochs_data = epochs.get_data()
+    # cv = ShuffleSplit(10, test_size=0.4, random_state=42)
 
-    # # Assemble a classifier 
-    lda = LinearDiscriminantAnalysis()
-    csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
+    # # # Assemble a classifier 
+    # lda = LinearDiscriminantAnalysis()
+    # csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
 
-    # Use scikit-learn Pipeline with cross_val_score function
-    clf = make_pipeline(csp, lda)
-    scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
+    # # Use scikit-learn Pipeline with cross_val_score function
+    # clf = make_pipeline(csp, lda)
+    # scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
 
-    # Printing the results
-    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    if scores.mean() > score_pipeline:
-        score_pipeline = scores.mean()
-        models_pipeline = clf
+    # # Printing the results
+    # print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+    # if scores.mean() > score_pipeline:
+    #     score_pipeline = scores.mean()
+    #     models_pipeline = clf
 
-    # plot CSP patterns estimated on full data for visualization
-    csp.fit_transform(epochs_data, labels)
-    csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
-    plt.show()
+    # # plot CSP patterns estimated on full data for visualization
+    # csp.fit_transform(epochs_data, labels)
+    # csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
+    # plt.show()
 
-    # Define a monte-carlo cross-validation generator (reduce variance):
-    scores = []
-    epochs_data = epochs.get_data()
-    cv = ShuffleSplit(10, test_size=0.4, random_state=42)
+    # # Define a monte-carlo cross-validation generator (reduce variance):
+    # scores = []
+    # epochs_data = epochs.get_data()
+    # cv = ShuffleSplit(10, test_size=0.4, random_state=42)
 
-    # # Assemble a classifier
-    log_reg = LogisticRegression(penalty='l1', solver='liblinear', multi_class='auto')
-    csp = CSP(n_components=15, reg=None, log=True, norm_trace=False)
+    # # # Assemble a classifier
+    # log_reg = LogisticRegression(penalty='l1', solver='liblinear', multi_class='auto')
+    # csp = CSP(n_components=15, reg=None, log=True, norm_trace=False)
 
-    # Use scikit-learn Pipeline with cross_val_score function
-    clf = make_pipeline(csp, log_reg)
-    scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
+    # # Use scikit-learn Pipeline with cross_val_score function
+    # clf = make_pipeline(csp, log_reg)
+    # scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
 
-    # Printing the results
-    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    if scores.mean() > score_pipeline:
-        score_pipeline = scores.mean()
-        models_pipeline = clf
+    # # Printing the results
+    # print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+    # if scores.mean() > score_pipeline:
+    #     score_pipeline = scores.mean()
+    #     models_pipeline = clf
 
-    # plot CSP patterns estimated on full data for visualization
-    csp.fit_transform(epochs_data, labels)
-    csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
-    plt.show()
+    # # plot CSP patterns estimated on full data for visualization
+    # csp.fit_transform(epochs_data, labels)
+    # csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
+    # plt.show()
 
     # Define a monte-carlo cross-validation generator (reduce variance):
     scores = []
@@ -172,7 +172,8 @@ def main():
     # # Assemble a classifier
     csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
     rfc = RandomForestClassifier(n_estimators=150, random_state=42)
-
+    print(f"Avant pipeline : epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
+    print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
     # Use scikit-learn Pipeline with cross_val_score function
     clf = make_pipeline(csp, rfc)
     scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
@@ -188,6 +189,7 @@ def main():
     csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
     plt.show()
 
+    return 
     # Define a monte-carlo cross-validation generator (reduce variance):
     scores = []
     epochs_data = epochs.get_data()
