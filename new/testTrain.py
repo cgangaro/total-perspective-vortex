@@ -20,8 +20,10 @@ from mne.decoding import CSP
 from mne.decoding import SPoC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import ShuffleSplit
+from sklearn.metrics import accuracy_score
 import numpy as np
 import mne
+import random
 from newPreprocess import newPreprocess, Configuration, PreProcessConfiguration
 matplotlib.use("webagg")
 
@@ -41,14 +43,21 @@ def main():
     subjects3 = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     subjects = subjects1 + subjects2 + subjects3
 
+    random.shuffle(subjects)
+    sizeTestTab = int(len(subjects) * 0.25)
+    testSubjects = subjects[:sizeTestTab]
+    trainSubjects = subjects[sizeTestTab:]
+    print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
+    dataTrainPreprocessed = newPreprocess(trainSubjects, config)
+    dataTestPreprocessed = newPreprocess(testSubjects, config)
 
-    dataPreprocessed = newPreprocess(subjects, config)
-
-    for data in dataPreprocessed:
+    models = {}
+    for data in dataTrainPreprocessed:
         print(data['epochs'])
         print(data['labels'])
         epochs = data['epochs']
         labels = data['labels']
+        expId = data['experiment']
         score_pipeline = -1
         models_pipeline = None
 
@@ -72,11 +81,31 @@ def main():
             score_pipeline = scores.mean()
             models_pipeline = clf
 
-        # plot CSP patterns estimated on full data for visualization
-        csp.fit_transform(epochs_data, labels)
-        # csp.plot_patterns(epochs.info, ch_type='eeg', units='Patterns (AU)', size=1.5)
-        # plt.show()
+        clf.fit(epochs_data, labels)
+        models[expId] = clf
 
+    experiment_accuracies = {}
+
+    for dataTest in dataTestPreprocessed:
+        epochs = dataTest['epochs']
+        labels = dataTest['labels']
+        expId = dataTest['experiment']
+        epochs_data = epochs.get_data()
+        print(f"epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
+        print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
+        clf = models[expId]
+        score = clf.score(epochs_data, labels)
+        print(f"Score for experiment {expId}: {score}")
+        predictions = clf.predict(epochs_data)
+        accuracy = accuracy_score(labels, predictions)
+        print(f"Test accuracy for experiment {expId}: {accuracy:.4f}")
+        experiment_accuracies[expId] = accuracy
+    
+    if experiment_accuracies:
+        mean_accuracy = np.mean(list(experiment_accuracies.values()))
+        print(f"Mean test accuracy across all experiments: {mean_accuracy:.4f}")
+    else:
+        print("No experiments were evaluated.")
     return
 
 if __name__ == "__main__":

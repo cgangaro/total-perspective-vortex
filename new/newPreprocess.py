@@ -55,13 +55,14 @@ def getExperimentData(subjects, runs, config: Configuration):
                 events=events, event_desc=mapping, sfreq=raw_execution.info['sfreq'],
                 orig_time=raw_execution.info['meas_date'])
             raw_execution.set_annotations(annot_from_events)
-            raw_files.append(raw_execution)
+            if raw_execution.info['sfreq'] == 160:
+                raw_files.append(raw_execution)
 
-    if config.withTargetSfreq:
-        target_sfreq = 160
-        for i in range(len(raw_files)):
-            if raw_files[i].info['sfreq'] != target_sfreq:
-                raw_files[i].resample(target_sfreq, npad="auto")
+    # if config.withTargetSfreq:
+    #     target_sfreq = 160
+    #     for i in range(len(raw_files)):
+    #         if raw_files[i].info['sfreq'] != target_sfreq:
+    #             raw_files[i].resample(target_sfreq, npad="auto")
     raw = concatenate_raws(raw_files)
 
     events, event_dict = events_from_annotations(raw)
@@ -77,7 +78,7 @@ def getExperimentData(subjects, runs, config: Configuration):
 
     event_id = {'do/feet': 1, 'do/hands': 2}
     tmin, tmax = -1., 4.
-
+    # raw = run_ica(raw, 'fastica', picks)
     events, event_dict = mne.events_from_annotations(raw, event_id=event_id)
     print(event_dict)
 
@@ -91,12 +92,16 @@ def getExperimentData(subjects, runs, config: Configuration):
 def run_ica(raw, method, picks, fit_params=None):
     raw_corrected = raw.copy()
     n_components=10
-    
+    print('test')
     ica = ICA(n_components=n_components, method=method, fit_params=fit_params, random_state=97)
+    print('test2')
     ica.fit(raw_corrected, picks=picks)
-    
+    print('test3')
     eog_indices, scores = ica.find_bads_eog(raw, ch_name='Fpz',threshold=1.5)
-    ica.exclude.extend(eog_indices) 
+    print('test4')
+    ica.exclude.extend(eog_indices)
+    print('test5')
     raw_corrected = ica.apply(raw_corrected, n_pca_components = n_components, exclude = ica.exclude)
+    print('test6')
     print(ica.exclude, ica.labels_)
     return raw_corrected
