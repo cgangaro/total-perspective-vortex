@@ -25,6 +25,7 @@ import numpy as np
 import mne
 import random
 from newPreprocess import newPreprocess, Configuration, PreProcessConfiguration
+from CSP import CSP
 matplotlib.use("webagg")
 
 
@@ -33,9 +34,11 @@ def main():
     config = PreProcessConfiguration(
         withTargetSfreq=True,
         makeMontage=True,
-        montageShape='standard_1005',
+        montageShape='standard_1020',
         lowFilter=8.0,
-        highFilter=32.0
+        highFilter=40.0,
+        with128Hz=False,
+        targetSfreq=160.0
     )
 
     subjects1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
@@ -49,7 +52,7 @@ def main():
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
     dataTrainPreprocessed = newPreprocess(trainSubjects, config)
-    dataTestPreprocessed = newPreprocess(testSubjects, config)
+    # dataTestPreprocessed = newPreprocess(testSubjects, config)
 
     models = {}
     for data in dataTrainPreprocessed:
@@ -64,48 +67,86 @@ def main():
         # Define a monte-carlo cross-validation generator (reduce variance):
         scores = []
         epochs_data = epochs.get_data()
-        cv = ShuffleSplit(10, test_size=0.4, random_state=42)
+        cv = ShuffleSplit(10, test_size=0.2, random_state=42)
 
         # # Assemble a classifier
         csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
-        rfc = RandomForestClassifier(n_estimators=150, random_state=42)
+        # csp = CSP()
+        rfc = RandomForestClassifier(n_estimators=200, random_state=42)
         print(f"Avant pipeline : epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
         print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
+        print(f"epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
         # Use scikit-learn Pipeline with cross_val_score function
         clf = make_pipeline(csp, rfc)
         scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
 
         # Printing the results
         print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-        if scores.mean() > score_pipeline:
-            score_pipeline = scores.mean()
-            models_pipeline = clf
 
         clf.fit(epochs_data, labels)
         models[expId] = clf
 
     experiment_accuracies = {}
 
-    for dataTest in dataTestPreprocessed:
-        epochs = dataTest['epochs']
-        labels = dataTest['labels']
-        expId = dataTest['experiment']
-        epochs_data = epochs.get_data()
-        print(f"epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
-        print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
-        clf = models[expId]
-        score = clf.score(epochs_data, labels)
-        print(f"Score for experiment {expId}: {score}")
-        predictions = clf.predict(epochs_data)
-        accuracy = accuracy_score(labels, predictions)
-        print(f"Test accuracy for experiment {expId}: {accuracy:.4f}")
-        experiment_accuracies[expId] = accuracy
-    
-    if experiment_accuracies:
-        mean_accuracy = np.mean(list(experiment_accuracies.values()))
-        print(f"Mean test accuracy across all experiments: {mean_accuracy:.4f}")
-    else:
-        print("No experiments were evaluated.")
+    # for dataTest in dataTestPreprocessed:
+    #     epochs = dataTest['epochs']
+    #     labels = dataTest['labels']
+    #     expId = dataTest['experiment']
+    #     epochs_data = epochs.get_data()
+    #     print(f"epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
+    #     print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
+    #     clf = models[expId]
+    #     score = clf.score(epochs_data, labels)
+    #     print(f"Score for experiment {expId}: {score}")
+    #     predictions = clf.predict(epochs_data)
+    #     accuracy = accuracy_score(labels, predictions)
+    #     print(f"Test accuracy for experiment {expId}: {accuracy:.4f}")
+    #     experiment_accuracies[expId] = accuracy
+
+    all_subject_scores = {}
+    print(f"----------Test subjects: {testSubjects}----------")
+    for subject in testSubjects:
+        print(f"----------Subject {subject} has {len(testSubjects)} experiments----------")
+        dataTestPreprocessed = newPreprocess([subject], config)
+
+        subject_results = {}
+        for dataTest in dataTestPreprocessed:
+            epochs = dataTest['epochs']
+            labels = dataTest['labels']
+            expId = dataTest['experiment']
+            epochs_data = epochs.get_data()
+            # print(f"Subject {subject} experiment {expId}, epochs_data shape: {epochs_data.shape}, labels shape: {labels.shape}, labels: {labels}")
+            clf = models[expId]
+            score = clf.score(epochs_data, labels)
+            predictions = clf.predict(epochs_data)
+            accuracy = accuracy_score(labels, predictions)
+            # print(f"Score : {score}, Accuracy: {accuracy}")
+            subject_results[expId] = {
+                'score': score,
+                'accuracy': accuracy
+            }
+
+        all_subject_scores[subject] = subject_results
+
+    print()
+    print()
+    print("----------Results----------")
+    print()
+    for subject, subject_results in all_subject_scores.items():
+        for expId, results in subject_results.items():
+            if expId not in experiment_accuracies:
+                experiment_accuracies[expId] = []
+            experiment_accuracies[expId].append(results['accuracy'])
+
+    for expId, accuracies in experiment_accuracies.items():
+        mean_accuracy = np.mean(accuracies)
+        print(f"List of accuracies for experiment {expId}: {accuracies}")
+        print(f"Expérience {expId} : Précision moyenne = {mean_accuracy:.4f} sur {len(accuracies)} sujets")
+    # if experiment_accuracies:
+    #     mean_accuracy = np.mean(list(experiment_accuracies.values()))
+    #     print(f"Mean test accuracy across all experiments: {mean_accuracy:.4f}")
+    # else:
+    #     print("No experiments were evaluated.")
     return
 
 if __name__ == "__main__":
