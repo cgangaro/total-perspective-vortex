@@ -16,6 +16,7 @@ import numpy as np
 from sklearn.model_selection import cross_val_score, LeaveOneGroupOut
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+from sklearn.discriminant_analysis import StandardScaler
 from mne.decoding import CSP
 from mne.decoding import SPoC
 from sklearn.ensemble import RandomForestClassifier
@@ -25,7 +26,6 @@ import numpy as np
 import mne
 import random
 from newPreprocess import newPreprocess, Configuration, PreProcessConfiguration
-from CSP import CSP
 matplotlib.use("webagg")
 
 
@@ -70,9 +70,10 @@ def main():
         cv = ShuffleSplit(10, test_size=0.2, random_state=42)
 
         # # Assemble a classifier
-        csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
-        # csp = CSP()
-        rfc = RandomForestClassifier(n_estimators=200, random_state=42)
+        # csp = CSP(n_components=10, reg=None, log=True, norm_trace=False)
+        csp = SPoC(n_components=10)
+        # rfc = RandomForestClassifier(n_estimators=200, random_state=42)
+        rfc = LDA()
         print(f"Avant pipeline : epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")
         print(f"Labels type: {labels.dtype}, shape: {labels.shape}")
         print(f"epochs_data type: {epochs_data.dtype}, shape: {epochs_data.shape}")

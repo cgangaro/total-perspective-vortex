@@ -30,6 +30,8 @@ def newPreprocess(subjects, config: PreProcessConfiguration):
         1: [4, 8, 12],
         2: [5, 9, 13],
         3: [6, 10, 14]
+        # 4: [3, 4, 7],
+        # 5: [5, 6, 9]
         # 4: [3, 5, 7, 9, 11, 13],
         # 5: [4, 6, 8, 10, 12, 14]
     }
@@ -48,7 +50,7 @@ def newPreprocess(subjects, config: PreProcessConfiguration):
         epochs, labels = getExperimentData(subjects, [], config, realVsImaginary=True)
         dataPreprocessed.append(
             {
-                'experiment': 4,
+                'experiment': 5,
                 'epochs': epochs,
                 'labels': labels
             }
