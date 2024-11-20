@@ -3,3 +3,4 @@ matplotlib
 tornado
 scikit-learn
 seaborn
+PyWavelets

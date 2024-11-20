@@ -4,8 +4,10 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import ShuffleSplit, cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
 from mne.decoding import CSP
 from preprocess import PreProcessConfiguration, preprocess
+from WaveletTransformer import WaveletTransformer
 
 
 def main():
@@ -26,9 +28,9 @@ def main():
     )
 
     experiments = {
-        # 0: [3, 7, 11],
-        # 1: [4, 8, 12],
-        # 2: [5, 9, 13],
+        0: [3, 7, 11],
+        1: [4, 8, 12],
+        2: [5, 9, 13],
         3: [6, 10, 14]
     }
 
@@ -67,6 +69,8 @@ def main():
 
         clf = make_pipeline(
             CSP(n_components=6, reg=None, log=True, norm_trace=False),
+            WaveletTransformer(wavelet='db4', level=3),
+            StandardScaler(),
             RandomForestClassifier(n_estimators=150)
         )
         scores = cross_val_score(clf, epochs_data, labels, cv=cv, groups=subject_ids, n_jobs=1)

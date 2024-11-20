@@ -1,0 +1,29 @@
+---
+config = PreProcessConfiguration(
+    makeMontage=True,
+    montageShape="standard_1020",
+    resample=True,
+    resampleFreq=90.0,
+    lowFilter=8.0,
+    highFilter=32.0,
+    ica=True,
+    icaComponents=20,
+    eog=True,
+    epochsTmin=-1.,
+    epochsTmax=3.
+)
+0.58 
+
+config = PreProcessConfiguration(
+    makeMontage=True,
+    montageShape="standard_1020",
+    resample=True,
+    resampleFreq=90.0,
+    lowFilter=8.0,
+    highFilter=36.0,
+    ica=True,
+    icaComponents=20,
+    eog=True,
+    epochsTmin=-1.,
+    epochsTmax=3.
+)
