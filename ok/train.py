@@ -32,20 +32,20 @@ def main():
     )
 
     experiments = {
-        0: [3, 7, 11],
+        # 0: [3, 7, 11],
         # 1: [4, 8, 12],
-        # 2: [5, 9, 13],
-        # 3: [6, 10, 14]
+        2: [5, 9, 13],
+        3: [6, 10, 14]
     }
 
     subjects1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     subjects2 = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
     subjects3 = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     subjects = subjects1 + subjects2 + subjects3
-    subjects = [1, 2, 3, 4]
+    # subjects = [1, 2, 3, 4]
 
     random.shuffle(subjects)
-    sizeTestTab = int(len(subjects) * 0.25)
+    sizeTestTab = int(len(subjects) * 0.2)
     testSubjects = subjects[:sizeTestTab]
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
@@ -66,7 +66,6 @@ def main():
 
         print(f"Experiment {expId} - {epochs_data.shape} epochs, labels: {labels.shape}")
         print(f"Unique labels: {np.unique(labels)}")
-        continue
 
         cv = ShuffleSplit(
             n_splits=3,
@@ -74,10 +73,11 @@ def main():
         )
 
         clf = make_pipeline(
-            CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
-            WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
+            # CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
+            CSP(n_components=10, reg=None, log=True, norm_trace=False),
+            # WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
             StandardScaler(),
-            RandomForestClassifier(n_estimators=200)
+            RandomForestClassifier(n_estimators=250, max_depth=0)
         )
         scores = cross_val_score(clf, epochs_data, labels, cv=cv, groups=subject_ids, n_jobs=1)
 
