@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 # from mne.decoding import CSP
 from CSP import CSP
+from WaveletFeatureExtractor import WaveletFeatureExtractor
 from preprocess import PreProcessConfiguration, preprocess
 from WaveletTransformer import WaveletTransformer
 
@@ -32,16 +33,16 @@ def main():
 
     experiments = {
         0: [3, 7, 11],
-        1: [4, 8, 12],
-        2: [5, 9, 13],
-        3: [6, 10, 14]
+        # 1: [4, 8, 12],
+        # 2: [5, 9, 13],
+        # 3: [6, 10, 14]
     }
 
     subjects1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
     subjects2 = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
     subjects3 = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     subjects = subjects1 + subjects2 + subjects3
-    # subjects = [1, 2, 3, 4]
+    subjects = [1, 2, 3, 4]
 
     random.shuffle(subjects)
     sizeTestTab = int(len(subjects) * 0.25)
@@ -63,19 +64,20 @@ def main():
         
         epochs_data = epochs.get_data()
 
-        print(f"Experiment {expId} - {epochs_data.shape[0]} epochs, labels: {labels.shape[0]}")
+        print(f"Experiment {expId} - {epochs_data.shape} epochs, labels: {labels.shape}")
+        print(f"Unique labels: {np.unique(labels)}")
+        continue
 
         cv = ShuffleSplit(
             n_splits=3,
-            test_size=0.2,
-            random_state=42
+            test_size=0.2
         )
 
         clf = make_pipeline(
-            CSP(),
-            # WaveletTransformer(wavelet='db4', level=3),
+            CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
+            WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
             StandardScaler(),
-            RandomForestClassifier(n_estimators=150)
+            RandomForestClassifier(n_estimators=200)
         )
         scores = cross_val_score(clf, epochs_data, labels, cv=cv, groups=subject_ids, n_jobs=1)
 

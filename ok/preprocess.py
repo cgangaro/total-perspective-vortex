@@ -122,7 +122,7 @@ def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfigura
     events, _ = events_from_annotations(rawBrutConcat, event_id=eventsId)
 
     epochs = Epochs(rawBrutConcat, events, eventsId, config.epochsTmin, config.epochsTmax, proj=True, picks=picks, baseline=None, preload=True)
-    labels = epochs.events[:, -1] - 1
+    labels = epochs.events[:, -1]
 
     return epochs, labels
 

@@ -1,6 +1,7 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn.base import BaseEstimator, TransformerMixin
 import pywt
+import numpy as np
 
 
 class WaveletTransformer(BaseEstimator, TransformerMixin):
