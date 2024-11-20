@@ -29,7 +29,7 @@ def preprocess(subjects, experiments, config: PreProcessConfiguration):
     dataPreprocessed = []
     for expId in experiments:
         print(f"Preprocessing experiment {expId}")
-        epochs, labels, subject_ids = preprocessOneExperiment(subjects, experiments[expId], config)
+        epochs, labels, subject_ids = preprocessOneExperiment(subjects, experiments[expId], config, expId)
         dataPreprocessed.append(
             {
                 'experiment': expId,
@@ -40,12 +40,14 @@ def preprocess(subjects, experiments, config: PreProcessConfiguration):
         )
     return dataPreprocessed
 
-def preprocessOneExperiment(subjects, runs, config: PreProcessConfiguration):
+def preprocessOneExperiment(subjects, runs, config: PreProcessConfiguration, expId):
     print(f"\n----------Preprocessing experiment for subjects: {subjects}----------\n")
     all_epochs = []
     all_labels = []
     all_subject_ids = []
-    for subject in subjects:
+    subjectsTotal = len(subjects)
+    for subject, i in zip(subjects, range(len(subjects))):
+        print(f"----------Preprocessing subject {subject} ({i+1}/{subjectsTotal})----------")
         epochs, labels = preprocessOneSubjectOneExperiment(subject, runs, config)
         all_epochs.append(epochs)
         all_labels.append(labels)
@@ -60,7 +62,6 @@ def preprocessOneExperiment(subjects, runs, config: PreProcessConfiguration):
 
 
 def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfiguration):
-    print(f"----------Preprocessing subject {subject}----------")
     rawFnames = eegbci.load_data(subject, runs=runs, verbose="ERROR", path=config.dataLocation)
     rawBrut = [mne.io.read_raw_edf(f, preload=True, stim_channel='auto') for f in rawFnames]
     rawBrutConcat = mne.concatenate_raws(rawBrut, verbose="ERROR")
