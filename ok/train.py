@@ -5,7 +5,8 @@ from sklearn.model_selection import ShuffleSplit, cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
-from mne.decoding import CSP
+# from mne.decoding import CSP
+from CSP import CSP
 from preprocess import PreProcessConfiguration, preprocess
 from WaveletTransformer import WaveletTransformer
 
@@ -14,6 +15,8 @@ def main():
 
     config = PreProcessConfiguration(
         dataLocation="/home/cgangaro/sgoinfre/mne_data",
+        loadData=False,
+        saveData=True,
         makeMontage=True,
         montageShape="standard_1020",
         resample=True,
@@ -38,6 +41,7 @@ def main():
     subjects2 = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
     subjects3 = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
     subjects = subjects1 + subjects2 + subjects3
+    # subjects = [1, 2, 3, 4]
 
     random.shuffle(subjects)
     sizeTestTab = int(len(subjects) * 0.25)
@@ -45,11 +49,11 @@ def main():
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
     
-    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config)
-    dataTestPreprocessed = preprocess(testSubjects, experiments, config)
+    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave")
+    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave")
 
     print("\n\n----------TRAIN DATA----------\n")
-
+    print(f"Train data: {len(dataTrainPreprocessed)} experiments")
     models = {}
     for dataTrain in dataTrainPreprocessed:
         expId = dataTrain['experiment']
@@ -68,8 +72,8 @@ def main():
         )
 
         clf = make_pipeline(
-            CSP(n_components=6, reg=None, log=True, norm_trace=False),
-            WaveletTransformer(wavelet='db4', level=3),
+            CSP(),
+            # WaveletTransformer(wavelet='db4', level=3),
             StandardScaler(),
             RandomForestClassifier(n_estimators=150)
         )
@@ -81,6 +85,7 @@ def main():
         models[expId] = clf
 
     print("\n\n----------TEST DATA----------\n")
+    print(f"Test data: {len(dataTestPreprocessed)} experiments, models: {len(models)}")
 
     for dataTest in dataTestPreprocessed:
         expId = dataTest['experiment']
