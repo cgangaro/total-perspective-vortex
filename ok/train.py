@@ -5,6 +5,7 @@ from sklearn.model_selection import ShuffleSplit, cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 # from mne.decoding import CSP
 from CSP import CSP
 from WaveletFeatureExtractor import WaveletFeatureExtractor
@@ -16,8 +17,8 @@ def main():
 
     config = PreProcessConfiguration(
         dataLocation="/home/cgangaro/sgoinfre/mne_data",
-        loadData=False,
-        saveData=True,
+        loadData=True,
+        saveData=False,
         makeMontage=True,
         montageShape="standard_1020",
         resample=True,
@@ -32,10 +33,12 @@ def main():
     )
 
     experiments = {
-        # 0: [3, 7, 11],
-        # 1: [4, 8, 12],
+        0: [3, 7, 11],
+        1: [4, 8, 12],
         2: [5, 9, 13],
-        3: [6, 10, 14]
+        3: [6, 10, 14],
+        4: [3, 4, 7, 8, 11, 12],
+        5: [5, 6, 9, 10, 13, 14],
     }
 
     subjects1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
@@ -74,10 +77,11 @@ def main():
 
         clf = make_pipeline(
             # CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
-            CSP(n_components=10, reg=None, log=True, norm_trace=False),
+            CSP(n_components=5, reg=None, log=True, norm_trace=False),
             # WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
             StandardScaler(),
-            RandomForestClassifier(n_estimators=250, max_depth=0)
+            # RandomForestClassifier(n_estimators=250, max_depth=None)
+            LinearDiscriminantAnalysis(solver='svd', tol=0.0001)
         )
         scores = cross_val_score(clf, epochs_data, labels, cv=cv, groups=subject_ids, n_jobs=1)
 
@@ -89,6 +93,7 @@ def main():
     print("\n\n----------TEST DATA----------\n")
     print(f"Test data: {len(dataTestPreprocessed)} experiments, models: {len(models)}")
 
+    accuracyTotal = 0
     for dataTest in dataTestPreprocessed:
         expId = dataTest['experiment']
         epochs = dataTest['epochs']
@@ -101,6 +106,9 @@ def main():
         predictions = clf.predict(epochs_data)
         accuracy = accuracy_score(labels, predictions)
         print(f"Experiment {expId} - Test Accuracy: {accuracy:.2f}")
+        accuracyTotal += accuracy
+    accuracyTotal /= len(dataTestPreprocessed)
+    print(f"Total Accuracy: {accuracyTotal:.4f}")
         
 if __name__ == "__main__":
     main()

@@ -98,6 +98,7 @@ def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfigura
 
     if config.ica:
         ica = mne.preprocessing.ICA(n_components=config.icaComponents)
+        ica = mne.preprocessing.ICA(n_components=config.icaComponents, random_state=97, max_iter=800)
         ica.fit(rawBrutConcat, picks=picks)
 
         if config.eog:
