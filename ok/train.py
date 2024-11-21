@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from sklearn.pipeline import make_pipeline
-from sklearn.model_selection import ShuffleSplit, cross_val_score
+from sklearn.model_selection import ShuffleSplit, cross_val_score, GroupKFold, LeaveOneGroupOut
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
@@ -17,12 +17,12 @@ def main():
 
     config = PreProcessConfiguration(
         dataLocation="/home/cgangaro/sgoinfre/mne_data",
-        loadData=True,
-        saveData=False,
+        loadData=False,
+        saveData=True,
         makeMontage=True,
         montageShape="standard_1020",
         resample=True,
-        resampleFreq=90.0,
+        resampleFreq=128.0,
         lowFilter=8.0,
         highFilter=32.0,
         ica=True,
@@ -53,8 +53,8 @@ def main():
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
     
-    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave")
-    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave")
+    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave100")
+    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave100")
 
     print("\n\n----------TRAIN DATA----------\n")
     print(f"Train data: {len(dataTrainPreprocessed)} experiments")
@@ -74,10 +74,12 @@ def main():
             n_splits=3,
             test_size=0.2
         )
+        # cv = GroupKFold(n_splits=5)
+        # cv = LeaveOneGroupOut()
 
         clf = make_pipeline(
             # CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
-            CSP(n_components=5, reg=None, log=True, norm_trace=False),
+            CSP(n_components=16, reg=None, log=True, norm_trace=False),
             # WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
             StandardScaler(),
             # RandomForestClassifier(n_estimators=250, max_depth=None)
