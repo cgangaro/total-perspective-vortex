@@ -17,12 +17,12 @@ def main():
 
     config = PreProcessConfiguration(
         dataLocation="/home/cgangaro/sgoinfre/mne_data",
-        loadData=False,
-        saveData=True,
+        loadData=True,
+        saveData=False,
         makeMontage=True,
         montageShape="standard_1020",
         resample=True,
-        resampleFreq=128.0,
+        resampleFreq=90.0,
         lowFilter=8.0,
         highFilter=32.0,
         ica=True,
@@ -53,8 +53,8 @@ def main():
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
     
-    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave100")
-    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave100")
+    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave90")
+    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave90")
 
     print("\n\n----------TRAIN DATA----------\n")
     print(f"Train data: {len(dataTrainPreprocessed)} experiments")
