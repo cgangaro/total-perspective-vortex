@@ -1,0 +1,16 @@
+{
+    "dataLocation": "C:/Users/rocke/mne_data",
+    "loadData": true,
+    "saveData": false,
+    "makeMontage": true,
+    "montageShape": "standard_1020",
+    "resample": true,
+    "resampleFreq": 70.0,
+    "lowFilter": 8.0,
+    "highFilter": 40.0,
+    "ica": true,
+    "icaComponents": 30,
+    "eog": true,
+    "epochsTmin": -0.5,
+    "epochsTmax": 2.5
+}
