@@ -1,0 +1,1561 @@
+88 train subjects, 21 test subjects
+Preprocessing experiment 0 - Open and close left or right fist
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 0 - Preprocessing subject 98 (1/88)----------
+Preprocessing subject 98 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 106 (2/88)----------
+Preprocessing subject 106 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 97 (3/88)----------
+Preprocessing subject 97 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 86 (4/88)----------
+Preprocessing subject 86 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 18 (5/88)----------
+Preprocessing subject 18 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 55 (6/88)----------
+Preprocessing subject 55 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 107 (7/88)----------
+Preprocessing subject 107 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 66 (8/88)----------
+Preprocessing subject 66 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 101 (9/88)----------
+Preprocessing subject 101 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 16 (10/88)----------
+Preprocessing subject 16 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 42 (11/88)----------
+Preprocessing subject 42 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 8 (12/88)----------
+Preprocessing subject 8 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 25 (13/88)----------
+Preprocessing subject 25 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 52 (14/88)----------
+Preprocessing subject 52 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 108 (15/88)----------
+Preprocessing subject 108 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 11 (16/88)----------
+Preprocessing subject 11 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 38 (17/88)----------
+Preprocessing subject 38 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 44 (18/88)----------
+Preprocessing subject 44 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 89 (19/88)----------
+Preprocessing subject 89 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 87 (20/88)----------
+Preprocessing subject 87 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 32 (21/88)----------
+Preprocessing subject 32 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 1 (22/88)----------
+Preprocessing subject 1 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 31 (23/88)----------
+Preprocessing subject 31 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 19 (24/88)----------
+Preprocessing subject 19 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 14 (25/88)----------
+Preprocessing subject 14 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 5 (26/88)----------
+Preprocessing subject 5 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 21 (27/88)----------
+Preprocessing subject 21 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 51 (28/88)----------
+Preprocessing subject 51 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 26 (29/88)----------
+Preprocessing subject 26 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 24 (30/88)----------
+Preprocessing subject 24 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 81 (31/88)----------
+Preprocessing subject 81 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 92 (32/88)----------
+Preprocessing subject 92 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 67 (33/88)----------
+Preprocessing subject 67 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 40 (34/88)----------
+Preprocessing subject 40 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 27 (35/88)----------
+Preprocessing subject 27 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 71 (36/88)----------
+Preprocessing subject 71 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 91 (37/88)----------
+Preprocessing subject 91 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 84 (38/88)----------
+Preprocessing subject 84 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 4 (39/88)----------
+Preprocessing subject 4 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 45 (40/88)----------
+Preprocessing subject 45 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 94 (41/88)----------
+Preprocessing subject 94 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 13 (42/88)----------
+Preprocessing subject 13 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 22 (43/88)----------
+Preprocessing subject 22 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 61 (44/88)----------
+Preprocessing subject 61 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 37 (45/88)----------
+Preprocessing subject 37 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 39 (46/88)----------
+Preprocessing subject 39 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 7 (47/88)----------
+Preprocessing subject 7 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 80 (48/88)----------
+Preprocessing subject 80 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 30 (49/88)----------
+Preprocessing subject 30 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 77 (50/88)----------
+Preprocessing subject 77 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 74 (51/88)----------
+Preprocessing subject 74 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 69 (52/88)----------
+Preprocessing subject 69 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 70 (53/88)----------
+Preprocessing subject 70 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 33 (54/88)----------
+Preprocessing subject 33 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 49 (55/88)----------
+Preprocessing subject 49 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 59 (56/88)----------
+Preprocessing subject 59 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 54 (57/88)----------
+Preprocessing subject 54 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 53 (58/88)----------
+Preprocessing subject 53 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 73 (59/88)----------
+Preprocessing subject 73 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 3 (60/88)----------
+Preprocessing subject 3 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 57 (61/88)----------
+Preprocessing subject 57 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 43 (62/88)----------
+Preprocessing subject 43 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 28 (63/88)----------
+Preprocessing subject 28 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 20 (64/88)----------
+Preprocessing subject 20 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 12 (65/88)----------
+Preprocessing subject 12 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 64 (66/88)----------
+Preprocessing subject 64 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 65 (67/88)----------
+Preprocessing subject 65 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 79 (68/88)----------
+Preprocessing subject 79 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 75 (69/88)----------
+Preprocessing subject 75 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 95 (70/88)----------
+Preprocessing subject 95 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 47 (71/88)----------
+Preprocessing subject 47 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 41 (72/88)----------
+Preprocessing subject 41 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 29 (73/88)----------
+Preprocessing subject 29 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 104 (74/88)----------
+Preprocessing subject 104 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 99 (75/88)----------
+Preprocessing subject 99 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 72 (76/88)----------
+Preprocessing subject 72 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 105 (77/88)----------
+Preprocessing subject 105 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 23 (78/88)----------
+Preprocessing subject 23 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 96 (79/88)----------
+Preprocessing subject 96 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 56 (80/88)----------
+Preprocessing subject 56 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 93 (81/88)----------
+Preprocessing subject 93 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 63 (82/88)----------
+Preprocessing subject 63 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 6 (83/88)----------
+Preprocessing subject 6 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 100 (84/88)----------
+Preprocessing subject 100 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 50 (85/88)----------
+Preprocessing subject 50 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 88 (86/88)----------
+Preprocessing subject 88 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 82 (87/88)----------
+Preprocessing subject 82 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 10 (88/88)----------
+Preprocessing subject 10 for runs [3, 7, 11]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 1 - Imagine opening and closing left or right fist
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 1 - Preprocessing subject 98 (1/88)----------
+Preprocessing subject 98 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 106 (2/88)----------
+Preprocessing subject 106 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 97 (3/88)----------
+Preprocessing subject 97 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 86 (4/88)----------
+Preprocessing subject 86 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 18 (5/88)----------
+Preprocessing subject 18 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 55 (6/88)----------
+Preprocessing subject 55 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 107 (7/88)----------
+Preprocessing subject 107 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 66 (8/88)----------
+Preprocessing subject 66 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 101 (9/88)----------
+Preprocessing subject 101 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 16 (10/88)----------
+Preprocessing subject 16 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 42 (11/88)----------
+Preprocessing subject 42 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 8 (12/88)----------
+Preprocessing subject 8 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 25 (13/88)----------
+Preprocessing subject 25 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 52 (14/88)----------
+Preprocessing subject 52 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 108 (15/88)----------
+Preprocessing subject 108 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 11 (16/88)----------
+Preprocessing subject 11 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 38 (17/88)----------
+Preprocessing subject 38 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 44 (18/88)----------
+Preprocessing subject 44 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 89 (19/88)----------
+Preprocessing subject 89 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 87 (20/88)----------
+Preprocessing subject 87 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 32 (21/88)----------
+Preprocessing subject 32 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 1 (22/88)----------
+Preprocessing subject 1 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 31 (23/88)----------
+Preprocessing subject 31 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 19 (24/88)----------
+Preprocessing subject 19 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 14 (25/88)----------
+Preprocessing subject 14 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 5 (26/88)----------
+Preprocessing subject 5 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 21 (27/88)----------
+Preprocessing subject 21 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 51 (28/88)----------
+Preprocessing subject 51 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 26 (29/88)----------
+Preprocessing subject 26 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 24 (30/88)----------
+Preprocessing subject 24 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 81 (31/88)----------
+Preprocessing subject 81 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 92 (32/88)----------
+Preprocessing subject 92 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 67 (33/88)----------
+Preprocessing subject 67 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 40 (34/88)----------
+Preprocessing subject 40 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 27 (35/88)----------
+Preprocessing subject 27 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 71 (36/88)----------
+Preprocessing subject 71 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 91 (37/88)----------
+Preprocessing subject 91 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 84 (38/88)----------
+Preprocessing subject 84 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 4 (39/88)----------
+Preprocessing subject 4 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 45 (40/88)----------
+Preprocessing subject 45 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 94 (41/88)----------
+Preprocessing subject 94 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 13 (42/88)----------
+Preprocessing subject 13 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 22 (43/88)----------
+Preprocessing subject 22 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 61 (44/88)----------
+Preprocessing subject 61 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 37 (45/88)----------
+Preprocessing subject 37 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 39 (46/88)----------
+Preprocessing subject 39 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 7 (47/88)----------
+Preprocessing subject 7 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 80 (48/88)----------
+Preprocessing subject 80 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 30 (49/88)----------
+Preprocessing subject 30 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 77 (50/88)----------
+Preprocessing subject 77 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 74 (51/88)----------
+Preprocessing subject 74 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 69 (52/88)----------
+Preprocessing subject 69 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 70 (53/88)----------
+Preprocessing subject 70 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 33 (54/88)----------
+Preprocessing subject 33 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 49 (55/88)----------
+Preprocessing subject 49 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 59 (56/88)----------
+Preprocessing subject 59 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 54 (57/88)----------
+Preprocessing subject 54 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 53 (58/88)----------
+Preprocessing subject 53 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 73 (59/88)----------
+Preprocessing subject 73 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 3 (60/88)----------
+Preprocessing subject 3 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 57 (61/88)----------
+Preprocessing subject 57 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 43 (62/88)----------
+Preprocessing subject 43 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 28 (63/88)----------
+Preprocessing subject 28 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 20 (64/88)----------
+Preprocessing subject 20 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 12 (65/88)----------
+Preprocessing subject 12 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 64 (66/88)----------
+Preprocessing subject 64 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 65 (67/88)----------
+Preprocessing subject 65 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 79 (68/88)----------
+Preprocessing subject 79 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 75 (69/88)----------
+Preprocessing subject 75 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 95 (70/88)----------
+Preprocessing subject 95 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 47 (71/88)----------
+Preprocessing subject 47 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 41 (72/88)----------
+Preprocessing subject 41 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 29 (73/88)----------
+Preprocessing subject 29 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 104 (74/88)----------
+Preprocessing subject 104 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 99 (75/88)----------
+Preprocessing subject 99 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 72 (76/88)----------
+Preprocessing subject 72 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 105 (77/88)----------
+Preprocessing subject 105 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 23 (78/88)----------
+Preprocessing subject 23 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 96 (79/88)----------
+Preprocessing subject 96 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 56 (80/88)----------
+Preprocessing subject 56 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 93 (81/88)----------
+Preprocessing subject 93 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 63 (82/88)----------
+Preprocessing subject 63 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 6 (83/88)----------
+Preprocessing subject 6 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 100 (84/88)----------
+Preprocessing subject 100 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 50 (85/88)----------
+Preprocessing subject 50 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 88 (86/88)----------
+Preprocessing subject 88 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 82 (87/88)----------
+Preprocessing subject 82 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 10 (88/88)----------
+Preprocessing subject 10 for runs [4, 8, 12]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 2 - Open and close both fists or both fee
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 2 - Preprocessing subject 98 (1/88)----------
+Preprocessing subject 98 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 106 (2/88)----------
+Preprocessing subject 106 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 97 (3/88)----------
+Preprocessing subject 97 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 86 (4/88)----------
+Preprocessing subject 86 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 18 (5/88)----------
+Preprocessing subject 18 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 55 (6/88)----------
+Preprocessing subject 55 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 107 (7/88)----------
+Preprocessing subject 107 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 66 (8/88)----------
+Preprocessing subject 66 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 101 (9/88)----------
+Preprocessing subject 101 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 16 (10/88)----------
+Preprocessing subject 16 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 42 (11/88)----------
+Preprocessing subject 42 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 8 (12/88)----------
+Preprocessing subject 8 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 25 (13/88)----------
+Preprocessing subject 25 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 52 (14/88)----------
+Preprocessing subject 52 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 108 (15/88)----------
+Preprocessing subject 108 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 11 (16/88)----------
+Preprocessing subject 11 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 38 (17/88)----------
+Preprocessing subject 38 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 44 (18/88)----------
+Preprocessing subject 44 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 89 (19/88)----------
+Preprocessing subject 89 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 87 (20/88)----------
+Preprocessing subject 87 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 32 (21/88)----------
+Preprocessing subject 32 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 1 (22/88)----------
+Preprocessing subject 1 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 31 (23/88)----------
+Preprocessing subject 31 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 19 (24/88)----------
+Preprocessing subject 19 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 14 (25/88)----------
+Preprocessing subject 14 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 5 (26/88)----------
+Preprocessing subject 5 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 21 (27/88)----------
+Preprocessing subject 21 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 51 (28/88)----------
+Preprocessing subject 51 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 26 (29/88)----------
+Preprocessing subject 26 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 24 (30/88)----------
+Preprocessing subject 24 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 81 (31/88)----------
+Preprocessing subject 81 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 92 (32/88)----------
+Preprocessing subject 92 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 67 (33/88)----------
+Preprocessing subject 67 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 40 (34/88)----------
+Preprocessing subject 40 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 27 (35/88)----------
+Preprocessing subject 27 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 71 (36/88)----------
+Preprocessing subject 71 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 91 (37/88)----------
+Preprocessing subject 91 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 84 (38/88)----------
+Preprocessing subject 84 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 4 (39/88)----------
+Preprocessing subject 4 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 45 (40/88)----------
+Preprocessing subject 45 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 94 (41/88)----------
+Preprocessing subject 94 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 13 (42/88)----------
+Preprocessing subject 13 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 22 (43/88)----------
+Preprocessing subject 22 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 61 (44/88)----------
+Preprocessing subject 61 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 37 (45/88)----------
+Preprocessing subject 37 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 39 (46/88)----------
+Preprocessing subject 39 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 7 (47/88)----------
+Preprocessing subject 7 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 80 (48/88)----------
+Preprocessing subject 80 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 30 (49/88)----------
+Preprocessing subject 30 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 77 (50/88)----------
+Preprocessing subject 77 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 74 (51/88)----------
+Preprocessing subject 74 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 69 (52/88)----------
+Preprocessing subject 69 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 70 (53/88)----------
+Preprocessing subject 70 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 33 (54/88)----------
+Preprocessing subject 33 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 49 (55/88)----------
+Preprocessing subject 49 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 59 (56/88)----------
+Preprocessing subject 59 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 54 (57/88)----------
+Preprocessing subject 54 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 53 (58/88)----------
+Preprocessing subject 53 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 73 (59/88)----------
+Preprocessing subject 73 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 3 (60/88)----------
+Preprocessing subject 3 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 57 (61/88)----------
+Preprocessing subject 57 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 43 (62/88)----------
+Preprocessing subject 43 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 28 (63/88)----------
+Preprocessing subject 28 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 20 (64/88)----------
+Preprocessing subject 20 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 12 (65/88)----------
+Preprocessing subject 12 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 64 (66/88)----------
+Preprocessing subject 64 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 65 (67/88)----------
+Preprocessing subject 65 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 79 (68/88)----------
+Preprocessing subject 79 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 75 (69/88)----------
+Preprocessing subject 75 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 95 (70/88)----------
+Preprocessing subject 95 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 47 (71/88)----------
+Preprocessing subject 47 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 41 (72/88)----------
+Preprocessing subject 41 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 29 (73/88)----------
+Preprocessing subject 29 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 104 (74/88)----------
+Preprocessing subject 104 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 99 (75/88)----------
+Preprocessing subject 99 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 72 (76/88)----------
+Preprocessing subject 72 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 105 (77/88)----------
+Preprocessing subject 105 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 23 (78/88)----------
+Preprocessing subject 23 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 96 (79/88)----------
+Preprocessing subject 96 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 56 (80/88)----------
+Preprocessing subject 56 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 93 (81/88)----------
+Preprocessing subject 93 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 63 (82/88)----------
+Preprocessing subject 63 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 6 (83/88)----------
+Preprocessing subject 6 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 100 (84/88)----------
+Preprocessing subject 100 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 50 (85/88)----------
+Preprocessing subject 50 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 88 (86/88)----------
+Preprocessing subject 88 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 82 (87/88)----------
+Preprocessing subject 82 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 10 (88/88)----------
+Preprocessing subject 10 for runs [5, 9, 13]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 3 - Imagine opening and closing both fists or both feet
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 3 - Preprocessing subject 98 (1/88)----------
+Preprocessing subject 98 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 106 (2/88)----------
+Preprocessing subject 106 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 97 (3/88)----------
+Preprocessing subject 97 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 86 (4/88)----------
+Preprocessing subject 86 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 18 (5/88)----------
+Preprocessing subject 18 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 55 (6/88)----------
+Preprocessing subject 55 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 107 (7/88)----------
+Preprocessing subject 107 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 66 (8/88)----------
+Preprocessing subject 66 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 101 (9/88)----------
+Preprocessing subject 101 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 16 (10/88)----------
+Preprocessing subject 16 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 42 (11/88)----------
+Preprocessing subject 42 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 8 (12/88)----------
+Preprocessing subject 8 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 25 (13/88)----------
+Preprocessing subject 25 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 52 (14/88)----------
+Preprocessing subject 52 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 108 (15/88)----------
+Preprocessing subject 108 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 11 (16/88)----------
+Preprocessing subject 11 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 38 (17/88)----------
+Preprocessing subject 38 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 44 (18/88)----------
+Preprocessing subject 44 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 89 (19/88)----------
+Preprocessing subject 89 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 87 (20/88)----------
+Preprocessing subject 87 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 32 (21/88)----------
+Preprocessing subject 32 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 1 (22/88)----------
+Preprocessing subject 1 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 31 (23/88)----------
+Preprocessing subject 31 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 19 (24/88)----------
+Preprocessing subject 19 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 14 (25/88)----------
+Preprocessing subject 14 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 5 (26/88)----------
+Preprocessing subject 5 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 21 (27/88)----------
+Preprocessing subject 21 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 51 (28/88)----------
+Preprocessing subject 51 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 26 (29/88)----------
+Preprocessing subject 26 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 24 (30/88)----------
+Preprocessing subject 24 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 81 (31/88)----------
+Preprocessing subject 81 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 92 (32/88)----------
+Preprocessing subject 92 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 67 (33/88)----------
+Preprocessing subject 67 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 40 (34/88)----------
+Preprocessing subject 40 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 27 (35/88)----------
+Preprocessing subject 27 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 71 (36/88)----------
+Preprocessing subject 71 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 91 (37/88)----------
+Preprocessing subject 91 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 84 (38/88)----------
+Preprocessing subject 84 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 4 (39/88)----------
+Preprocessing subject 4 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 45 (40/88)----------
+Preprocessing subject 45 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 94 (41/88)----------
+Preprocessing subject 94 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 13 (42/88)----------
+Preprocessing subject 13 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 22 (43/88)----------
+Preprocessing subject 22 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 61 (44/88)----------
+Preprocessing subject 61 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 37 (45/88)----------
+Preprocessing subject 37 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 39 (46/88)----------
+Preprocessing subject 39 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 7 (47/88)----------
+Preprocessing subject 7 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 80 (48/88)----------
+Preprocessing subject 80 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 30 (49/88)----------
+Preprocessing subject 30 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 77 (50/88)----------
+Preprocessing subject 77 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 74 (51/88)----------
+Preprocessing subject 74 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 69 (52/88)----------
+Preprocessing subject 69 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 70 (53/88)----------
+Preprocessing subject 70 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 33 (54/88)----------
+Preprocessing subject 33 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 49 (55/88)----------
+Preprocessing subject 49 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 59 (56/88)----------
+Preprocessing subject 59 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 54 (57/88)----------
+Preprocessing subject 54 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 53 (58/88)----------
+Preprocessing subject 53 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 73 (59/88)----------
+Preprocessing subject 73 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 3 (60/88)----------
+Preprocessing subject 3 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 57 (61/88)----------
+Preprocessing subject 57 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 43 (62/88)----------
+Preprocessing subject 43 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 28 (63/88)----------
+Preprocessing subject 28 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 20 (64/88)----------
+Preprocessing subject 20 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 12 (65/88)----------
+Preprocessing subject 12 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 64 (66/88)----------
+Preprocessing subject 64 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 65 (67/88)----------
+Preprocessing subject 65 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 79 (68/88)----------
+Preprocessing subject 79 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 75 (69/88)----------
+Preprocessing subject 75 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 95 (70/88)----------
+Preprocessing subject 95 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 47 (71/88)----------
+Preprocessing subject 47 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 41 (72/88)----------
+Preprocessing subject 41 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 29 (73/88)----------
+Preprocessing subject 29 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 104 (74/88)----------
+Preprocessing subject 104 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 99 (75/88)----------
+Preprocessing subject 99 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 72 (76/88)----------
+Preprocessing subject 72 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 105 (77/88)----------
+Preprocessing subject 105 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 23 (78/88)----------
+Preprocessing subject 23 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 96 (79/88)----------
+Preprocessing subject 96 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 56 (80/88)----------
+Preprocessing subject 56 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 93 (81/88)----------
+Preprocessing subject 93 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 63 (82/88)----------
+Preprocessing subject 63 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 6 (83/88)----------
+Preprocessing subject 6 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 100 (84/88)----------
+Preprocessing subject 100 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 50 (85/88)----------
+Preprocessing subject 50 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 88 (86/88)----------
+Preprocessing subject 88 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 82 (87/88)----------
+Preprocessing subject 82 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 10 (88/88)----------
+Preprocessing subject 10 for runs [6, 10, 14]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 4 - Imagine/execute open and close left or right fist
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 4 - Preprocessing subject 98 (1/88)----------
+Preprocessing subject 98 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 106 (2/88)----------
+Preprocessing subject 106 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 97 (3/88)----------
+Preprocessing subject 97 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 86 (4/88)----------
+Preprocessing subject 86 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 18 (5/88)----------
+Preprocessing subject 18 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 55 (6/88)----------
+Preprocessing subject 55 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 107 (7/88)----------
+Preprocessing subject 107 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 66 (8/88)----------
+Preprocessing subject 66 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 101 (9/88)----------
+Preprocessing subject 101 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 16 (10/88)----------
+Preprocessing subject 16 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 42 (11/88)----------
+Preprocessing subject 42 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 8 (12/88)----------
+Preprocessing subject 8 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 25 (13/88)----------
+Preprocessing subject 25 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 52 (14/88)----------
+Preprocessing subject 52 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 108 (15/88)----------
+Preprocessing subject 108 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 11 (16/88)----------
+Preprocessing subject 11 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 38 (17/88)----------
+Preprocessing subject 38 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 44 (18/88)----------
+Preprocessing subject 44 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 89 (19/88)----------
+Preprocessing subject 89 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 87 (20/88)----------
+Preprocessing subject 87 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 32 (21/88)----------
+Preprocessing subject 32 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 1 (22/88)----------
+Preprocessing subject 1 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 31 (23/88)----------
+Preprocessing subject 31 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 19 (24/88)----------
+Preprocessing subject 19 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 14 (25/88)----------
+Preprocessing subject 14 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 5 (26/88)----------
+Preprocessing subject 5 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 21 (27/88)----------
+Preprocessing subject 21 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 51 (28/88)----------
+Preprocessing subject 51 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 26 (29/88)----------
+Preprocessing subject 26 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 24 (30/88)----------
+Preprocessing subject 24 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 81 (31/88)----------
+Preprocessing subject 81 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 92 (32/88)----------
+Preprocessing subject 92 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 67 (33/88)----------
+Preprocessing subject 67 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 40 (34/88)----------
+Preprocessing subject 40 for runs [3, 4, 7, 8, 11, 12]
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\decomposition\_fastica.py:128: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\decomposition\_fastica.py:128: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\decomposition\_fastica.py:128: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
+  warnings.warn(
+----------Experiment 4 - Preprocessing subject 27 (35/88)----------
+Preprocessing subject 27 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 71 (36/88)----------
+Preprocessing subject 71 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 91 (37/88)----------
+Preprocessing subject 91 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 84 (38/88)----------
+Preprocessing subject 84 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 4 (39/88)----------
+Preprocessing subject 4 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 45 (40/88)----------
+Preprocessing subject 45 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 94 (41/88)----------
+Preprocessing subject 94 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 13 (42/88)----------
+Preprocessing subject 13 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 22 (43/88)----------
+Preprocessing subject 22 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 61 (44/88)----------
+Preprocessing subject 61 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 37 (45/88)----------
+Preprocessing subject 37 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 39 (46/88)----------
+Preprocessing subject 39 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 7 (47/88)----------
+Preprocessing subject 7 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 80 (48/88)----------
+Preprocessing subject 80 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 30 (49/88)----------
+Preprocessing subject 30 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 77 (50/88)----------
+Preprocessing subject 77 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 74 (51/88)----------
+Preprocessing subject 74 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 69 (52/88)----------
+Preprocessing subject 69 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 70 (53/88)----------
+Preprocessing subject 70 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 33 (54/88)----------
+Preprocessing subject 33 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 49 (55/88)----------
+Preprocessing subject 49 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 59 (56/88)----------
+Preprocessing subject 59 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 54 (57/88)----------
+Preprocessing subject 54 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 53 (58/88)----------
+Preprocessing subject 53 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 73 (59/88)----------
+Preprocessing subject 73 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 3 (60/88)----------
+Preprocessing subject 3 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 57 (61/88)----------
+Preprocessing subject 57 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 43 (62/88)----------
+Preprocessing subject 43 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 28 (63/88)----------
+Preprocessing subject 28 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 20 (64/88)----------
+Preprocessing subject 20 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 12 (65/88)----------
+Preprocessing subject 12 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 64 (66/88)----------
+Preprocessing subject 64 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 65 (67/88)----------
+Preprocessing subject 65 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 79 (68/88)----------
+Preprocessing subject 79 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 75 (69/88)----------
+Preprocessing subject 75 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 95 (70/88)----------
+Preprocessing subject 95 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 47 (71/88)----------
+Preprocessing subject 47 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 41 (72/88)----------
+Preprocessing subject 41 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 29 (73/88)----------
+Preprocessing subject 29 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 104 (74/88)----------
+Preprocessing subject 104 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 99 (75/88)----------
+Preprocessing subject 99 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 72 (76/88)----------
+Preprocessing subject 72 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 105 (77/88)----------
+Preprocessing subject 105 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 23 (78/88)----------
+Preprocessing subject 23 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 96 (79/88)----------
+Preprocessing subject 96 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 56 (80/88)----------
+Preprocessing subject 56 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 93 (81/88)----------
+Preprocessing subject 93 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 63 (82/88)----------
+Preprocessing subject 63 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 6 (83/88)----------
+Preprocessing subject 6 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 100 (84/88)----------
+Preprocessing subject 100 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 50 (85/88)----------
+Preprocessing subject 50 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 88 (86/88)----------
+Preprocessing subject 88 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 82 (87/88)----------
+Preprocessing subject 82 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 10 (88/88)----------
+Preprocessing subject 10 for runs [3, 4, 7, 8, 11, 12]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 5 - Baseline eyes open or closed
+
+----------Preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+----------Experiment 5 - Preprocessing subject 98 (1/88)----------
+Subject 98, Run 1: 60 epochs, unique labels: [0]
+Subject 98, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 106 (2/88)----------
+Subject 106, Run 1: 60 epochs, unique labels: [0]
+Subject 106, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 97 (3/88)----------
+Subject 97, Run 1: 60 epochs, unique labels: [0]
+Subject 97, Run 2: 59 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 86 (4/88)----------
+Subject 86, Run 1: 60 epochs, unique labels: [0]
+Subject 86, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 18 (5/88)----------
+Subject 18, Run 1: 60 epochs, unique labels: [0]
+Subject 18, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 55 (6/88)----------
+Subject 55, Run 1: 60 epochs, unique labels: [0]
+Subject 55, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 107 (7/88)----------
+Subject 107, Run 1: 60 epochs, unique labels: [0]
+Subject 107, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 66 (8/88)----------
+Subject 66, Run 1: 60 epochs, unique labels: [0]
+Subject 66, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 101 (9/88)----------
+Subject 101, Run 1: 60 epochs, unique labels: [0]
+Subject 101, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 16 (10/88)----------
+Subject 16, Run 1: 60 epochs, unique labels: [0]
+Subject 16, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 42 (11/88)----------
+Subject 42, Run 1: 60 epochs, unique labels: [0]
+Subject 42, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 8 (12/88)----------
+Subject 8, Run 1: 60 epochs, unique labels: [0]
+Subject 8, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 25 (13/88)----------
+Subject 25, Run 1: 60 epochs, unique labels: [0]
+Subject 25, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 52 (14/88)----------
+Subject 52, Run 1: 60 epochs, unique labels: [0]
+Subject 52, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 108 (15/88)----------
+Subject 108, Run 1: 60 epochs, unique labels: [0]
+Subject 108, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 11 (16/88)----------
+Subject 11, Run 1: 60 epochs, unique labels: [0]
+Subject 11, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 38 (17/88)----------
+Subject 38, Run 1: 60 epochs, unique labels: [0]
+Subject 38, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 44 (18/88)----------
+Subject 44, Run 1: 60 epochs, unique labels: [0]
+Subject 44, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 89 (19/88)----------
+Subject 89, Run 1: 60 epochs, unique labels: [0]
+Subject 89, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 87 (20/88)----------
+Subject 87, Run 1: 60 epochs, unique labels: [0]
+Subject 87, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 32 (21/88)----------
+Subject 32, Run 1: 60 epochs, unique labels: [0]
+Subject 32, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 1 (22/88)----------
+Subject 1, Run 1: 60 epochs, unique labels: [0]
+Subject 1, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 31 (23/88)----------
+Subject 31, Run 1: 60 epochs, unique labels: [0]
+Subject 31, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 19 (24/88)----------
+Subject 19, Run 1: 60 epochs, unique labels: [0]
+Subject 19, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 14 (25/88)----------
+Subject 14, Run 1: 59 epochs, unique labels: [0]
+Subject 14, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 5 (26/88)----------
+Subject 5, Run 1: 60 epochs, unique labels: [0]
+Subject 5, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 21 (27/88)----------
+Subject 21, Run 1: 60 epochs, unique labels: [0]
+Subject 21, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 51 (28/88)----------
+Subject 51, Run 1: 59 epochs, unique labels: [0]
+Subject 51, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 26 (29/88)----------
+Subject 26, Run 1: 60 epochs, unique labels: [0]
+Subject 26, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 24 (30/88)----------
+Subject 24, Run 1: 60 epochs, unique labels: [0]
+Subject 24, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 81 (31/88)----------
+Subject 81, Run 1: 60 epochs, unique labels: [0]
+Subject 81, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 92 (32/88)----------
+Subject 92, Run 1: 60 epochs, unique labels: [0]
+Subject 92, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 67 (33/88)----------
+Subject 67, Run 1: 60 epochs, unique labels: [0]
+Subject 67, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 40 (34/88)----------
+Subject 40, Run 1: 60 epochs, unique labels: [0]
+Subject 40, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 27 (35/88)----------
+Subject 27, Run 1: 60 epochs, unique labels: [0]
+Subject 27, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 71 (36/88)----------
+Subject 71, Run 1: 60 epochs, unique labels: [0]
+Subject 71, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 91 (37/88)----------
+Subject 91, Run 1: 60 epochs, unique labels: [0]
+Subject 91, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 84 (38/88)----------
+Subject 84, Run 1: 60 epochs, unique labels: [0]
+Subject 84, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 4 (39/88)----------
+Subject 4, Run 1: 60 epochs, unique labels: [0]
+Subject 4, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 45 (40/88)----------
+Subject 45, Run 1: 60 epochs, unique labels: [0]
+Subject 45, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 94 (41/88)----------
+Subject 94, Run 1: 60 epochs, unique labels: [0]
+Subject 94, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 13 (42/88)----------
+Subject 13, Run 1: 60 epochs, unique labels: [0]
+Subject 13, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 22 (43/88)----------
+Subject 22, Run 1: 60 epochs, unique labels: [0]
+Subject 22, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 61 (44/88)----------
+Subject 61, Run 1: 60 epochs, unique labels: [0]
+Subject 61, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 37 (45/88)----------
+Subject 37, Run 1: 60 epochs, unique labels: [0]
+Subject 37, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 39 (46/88)----------
+Subject 39, Run 1: 60 epochs, unique labels: [0]
+Subject 39, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 7 (47/88)----------
+Subject 7, Run 1: 60 epochs, unique labels: [0]
+Subject 7, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 80 (48/88)----------
+Subject 80, Run 1: 60 epochs, unique labels: [0]
+Subject 80, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 30 (49/88)----------
+Subject 30, Run 1: 60 epochs, unique labels: [0]
+Subject 30, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 77 (50/88)----------
+Subject 77, Run 1: 60 epochs, unique labels: [0]
+Subject 77, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 74 (51/88)----------
+Subject 74, Run 1: 60 epochs, unique labels: [0]
+Subject 74, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 69 (52/88)----------
+Subject 69, Run 1: 59 epochs, unique labels: [0]
+Subject 69, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 70 (53/88)----------
+Subject 70, Run 1: 60 epochs, unique labels: [0]
+Subject 70, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 33 (54/88)----------
+Subject 33, Run 1: 60 epochs, unique labels: [0]
+Subject 33, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 49 (55/88)----------
+Subject 49, Run 1: 60 epochs, unique labels: [0]
+Subject 49, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 59 (56/88)----------
+Subject 59, Run 1: 60 epochs, unique labels: [0]
+Subject 59, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 54 (57/88)----------
+Subject 54, Run 1: 60 epochs, unique labels: [0]
+Subject 54, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 53 (58/88)----------
+Subject 53, Run 1: 60 epochs, unique labels: [0]
+Subject 53, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 73 (59/88)----------
+Subject 73, Run 1: 60 epochs, unique labels: [0]
+Subject 73, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 3 (60/88)----------
+Subject 3, Run 1: 60 epochs, unique labels: [0]
+Subject 3, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 57 (61/88)----------
+Subject 57, Run 1: 60 epochs, unique labels: [0]
+Subject 57, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 43 (62/88)----------
+Subject 43, Run 1: 60 epochs, unique labels: [0]
+Subject 43, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 28 (63/88)----------
+Subject 28, Run 1: 60 epochs, unique labels: [0]
+Subject 28, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 20 (64/88)----------
+Subject 20, Run 1: 60 epochs, unique labels: [0]
+Subject 20, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 12 (65/88)----------
+Subject 12, Run 1: 60 epochs, unique labels: [0]
+Subject 12, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 64 (66/88)----------
+Subject 64, Run 1: 60 epochs, unique labels: [0]
+Subject 64, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 65 (67/88)----------
+Subject 65, Run 1: 60 epochs, unique labels: [0]
+Subject 65, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 79 (68/88)----------
+Subject 79, Run 1: 60 epochs, unique labels: [0]
+Subject 79, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 75 (69/88)----------
+Subject 75, Run 1: 60 epochs, unique labels: [0]
+Subject 75, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 95 (70/88)----------
+Subject 95, Run 1: 60 epochs, unique labels: [0]
+Subject 95, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 47 (71/88)----------
+Subject 47, Run 1: 60 epochs, unique labels: [0]
+Subject 47, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 41 (72/88)----------
+Subject 41, Run 1: 60 epochs, unique labels: [0]
+Subject 41, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 29 (73/88)----------
+Subject 29, Run 1: 60 epochs, unique labels: [0]
+Subject 29, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 104 (74/88)----------
+Subject 104, Run 1: 60 epochs, unique labels: [0]
+Subject 104, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 99 (75/88)----------
+Subject 99, Run 1: 60 epochs, unique labels: [0]
+Subject 99, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 72 (76/88)----------
+Subject 72, Run 1: 60 epochs, unique labels: [0]
+Subject 72, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 105 (77/88)----------
+Subject 105, Run 1: 60 epochs, unique labels: [0]
+Subject 105, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 23 (78/88)----------
+Subject 23, Run 1: 60 epochs, unique labels: [0]
+Subject 23, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 96 (79/88)----------
+Subject 96, Run 1: 60 epochs, unique labels: [0]
+Subject 96, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 56 (80/88)----------
+Subject 56, Run 1: 60 epochs, unique labels: [0]
+Subject 56, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 93 (81/88)----------
+Subject 93, Run 1: 60 epochs, unique labels: [0]
+Subject 93, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 63 (82/88)----------
+Subject 63, Run 1: 60 epochs, unique labels: [0]
+Subject 63, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 6 (83/88)----------
+Subject 6, Run 1: 60 epochs, unique labels: [0]
+Subject 6, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 100 (84/88)----------
+Subject 100, Run 1: 60 epochs, unique labels: [0]
+Subject 100, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 50 (85/88)----------
+Subject 50, Run 1: 60 epochs, unique labels: [0]
+Subject 50, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 88 (86/88)----------
+Subject 88, Run 1: 60 epochs, unique labels: [0]
+Subject 88, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 82 (87/88)----------
+Subject 82, Run 1: 60 epochs, unique labels: [0]
+Subject 82, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 10 (88/88)----------
+Subject 10, Run 1: 60 epochs, unique labels: [0]
+Subject 10, Run 2: 60 epochs, unique labels: [1]
+
+----------Finished preprocessing experiment for subjects: [98, 106, 97, 86, 18, 55, 107, 66, 101, 16, 42, 8, 25, 52, 108, 11, 38, 44, 89, 87, 32, 1, 31, 19, 14, 5, 21, 51, 26, 24, 81, 92, 67, 40, 27, 71, 91, 84, 4, 45, 94, 13, 22, 61, 37, 39, 7, 80, 30, 77, 74, 69, 70, 33, 49, 59, 54, 53, 73, 3, 57, 43, 28, 20, 12, 64, 65, 79, 75, 95, 47, 41, 29, 104, 99, 72, 105, 23, 96, 56, 93, 63, 6, 100, 50, 88, 82, 10]----------
+
+Preprocessing experiment 0 - Open and close left or right fist
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 0 - Preprocessing subject 102 (1/21)----------
+Preprocessing subject 102 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 58 (2/21)----------
+Preprocessing subject 58 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 46 (3/21)----------
+Preprocessing subject 46 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 60 (4/21)----------
+Preprocessing subject 60 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 2 (5/21)----------
+Preprocessing subject 2 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 76 (6/21)----------
+Preprocessing subject 76 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 83 (7/21)----------
+Preprocessing subject 83 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 36 (8/21)----------
+Preprocessing subject 36 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 78 (9/21)----------
+Preprocessing subject 78 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 68 (10/21)----------
+Preprocessing subject 68 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 62 (11/21)----------
+Preprocessing subject 62 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 103 (12/21)----------
+Preprocessing subject 103 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 109 (13/21)----------
+Preprocessing subject 109 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 34 (14/21)----------
+Preprocessing subject 34 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 17 (15/21)----------
+Preprocessing subject 17 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 48 (16/21)----------
+Preprocessing subject 48 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 9 (17/21)----------
+Preprocessing subject 9 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 35 (18/21)----------
+Preprocessing subject 35 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 85 (19/21)----------
+Preprocessing subject 85 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 15 (20/21)----------
+Preprocessing subject 15 for runs [3, 7, 11]
+----------Experiment 0 - Preprocessing subject 90 (21/21)----------
+Preprocessing subject 90 for runs [3, 7, 11]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+Preprocessing experiment 1 - Imagine opening and closing left or right fist
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 1 - Preprocessing subject 102 (1/21)----------
+Preprocessing subject 102 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 58 (2/21)----------
+Preprocessing subject 58 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 46 (3/21)----------
+Preprocessing subject 46 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 60 (4/21)----------
+Preprocessing subject 60 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 2 (5/21)----------
+Preprocessing subject 2 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 76 (6/21)----------
+Preprocessing subject 76 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 83 (7/21)----------
+Preprocessing subject 83 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 36 (8/21)----------
+Preprocessing subject 36 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 78 (9/21)----------
+Preprocessing subject 78 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 68 (10/21)----------
+Preprocessing subject 68 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 62 (11/21)----------
+Preprocessing subject 62 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 103 (12/21)----------
+Preprocessing subject 103 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 109 (13/21)----------
+Preprocessing subject 109 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 34 (14/21)----------
+Preprocessing subject 34 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 17 (15/21)----------
+Preprocessing subject 17 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 48 (16/21)----------
+Preprocessing subject 48 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 9 (17/21)----------
+Preprocessing subject 9 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 35 (18/21)----------
+Preprocessing subject 35 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 85 (19/21)----------
+Preprocessing subject 85 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 15 (20/21)----------
+Preprocessing subject 15 for runs [4, 8, 12]
+----------Experiment 1 - Preprocessing subject 90 (21/21)----------
+Preprocessing subject 90 for runs [4, 8, 12]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+Preprocessing experiment 2 - Open and close both fists or both fee
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 2 - Preprocessing subject 102 (1/21)----------
+Preprocessing subject 102 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 58 (2/21)----------
+Preprocessing subject 58 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 46 (3/21)----------
+Preprocessing subject 46 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 60 (4/21)----------
+Preprocessing subject 60 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 2 (5/21)----------
+Preprocessing subject 2 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 76 (6/21)----------
+Preprocessing subject 76 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 83 (7/21)----------
+Preprocessing subject 83 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 36 (8/21)----------
+Preprocessing subject 36 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 78 (9/21)----------
+Preprocessing subject 78 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 68 (10/21)----------
+Preprocessing subject 68 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 62 (11/21)----------
+Preprocessing subject 62 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 103 (12/21)----------
+Preprocessing subject 103 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 109 (13/21)----------
+Preprocessing subject 109 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 34 (14/21)----------
+Preprocessing subject 34 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 17 (15/21)----------
+Preprocessing subject 17 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 48 (16/21)----------
+Preprocessing subject 48 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 9 (17/21)----------
+Preprocessing subject 9 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 35 (18/21)----------
+Preprocessing subject 35 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 85 (19/21)----------
+Preprocessing subject 85 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 15 (20/21)----------
+Preprocessing subject 15 for runs [5, 9, 13]
+----------Experiment 2 - Preprocessing subject 90 (21/21)----------
+Preprocessing subject 90 for runs [5, 9, 13]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+Preprocessing experiment 3 - Imagine opening and closing both fists or both feet
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 3 - Preprocessing subject 102 (1/21)----------
+Preprocessing subject 102 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 58 (2/21)----------
+Preprocessing subject 58 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 46 (3/21)----------
+Preprocessing subject 46 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 60 (4/21)----------
+Preprocessing subject 60 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 2 (5/21)----------
+Preprocessing subject 2 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 76 (6/21)----------
+Preprocessing subject 76 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 83 (7/21)----------
+Preprocessing subject 83 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 36 (8/21)----------
+Preprocessing subject 36 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 78 (9/21)----------
+Preprocessing subject 78 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 68 (10/21)----------
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+C:\Users\rocke\miniconda3\envs\total\lib\site-packages\sklearn\model_selection\_split.py:91: UserWarning: The groups parameter is ignored by ShuffleSplit
+  warnings.warn(
+Preprocessing subject 68 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 62 (11/21)----------
+Preprocessing subject 62 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 103 (12/21)----------
+Preprocessing subject 103 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 109 (13/21)----------
+Preprocessing subject 109 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 34 (14/21)----------
+Preprocessing subject 34 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 17 (15/21)----------
+Preprocessing subject 17 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 48 (16/21)----------
+Preprocessing subject 48 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 9 (17/21)----------
+Preprocessing subject 9 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 35 (18/21)----------
+Preprocessing subject 35 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 85 (19/21)----------
+Preprocessing subject 85 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 15 (20/21)----------
+Preprocessing subject 15 for runs [6, 10, 14]
+----------Experiment 3 - Preprocessing subject 90 (21/21)----------
+Preprocessing subject 90 for runs [6, 10, 14]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+Preprocessing experiment 4 - Imagine/execute open and close left or right fist
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 4 - Preprocessing subject 102 (1/21)----------
+Preprocessing subject 102 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 58 (2/21)----------
+Preprocessing subject 58 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 46 (3/21)----------
+Preprocessing subject 46 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 60 (4/21)----------
+Preprocessing subject 60 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 2 (5/21)----------
+Preprocessing subject 2 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 76 (6/21)----------
+Preprocessing subject 76 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 83 (7/21)----------
+Preprocessing subject 83 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 36 (8/21)----------
+Preprocessing subject 36 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 78 (9/21)----------
+Preprocessing subject 78 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 68 (10/21)----------
+Preprocessing subject 68 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 62 (11/21)----------
+Preprocessing subject 62 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 103 (12/21)----------
+Preprocessing subject 103 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 109 (13/21)----------
+Preprocessing subject 109 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 34 (14/21)----------
+Preprocessing subject 34 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 17 (15/21)----------
+Preprocessing subject 17 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 48 (16/21)----------
+Preprocessing subject 48 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 9 (17/21)----------
+Preprocessing subject 9 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 35 (18/21)----------
+Preprocessing subject 35 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 85 (19/21)----------
+Preprocessing subject 85 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 15 (20/21)----------
+Preprocessing subject 15 for runs [3, 4, 7, 8, 11, 12]
+----------Experiment 4 - Preprocessing subject 90 (21/21)----------
+Preprocessing subject 90 for runs [3, 4, 7, 8, 11, 12]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+Preprocessing experiment 5 - Baseline eyes open or closed
+
+----------Preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+----------Experiment 5 - Preprocessing subject 102 (1/21)----------
+Subject 102, Run 1: 60 epochs, unique labels: [0]
+Subject 102, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 58 (2/21)----------
+Subject 58, Run 1: 60 epochs, unique labels: [0]
+Subject 58, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 46 (3/21)----------
+Subject 46, Run 1: 60 epochs, unique labels: [0]
+Subject 46, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 60 (4/21)----------
+Subject 60, Run 1: 60 epochs, unique labels: [0]
+Subject 60, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 2 (5/21)----------
+Subject 2, Run 1: 60 epochs, unique labels: [0]
+Subject 2, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 76 (6/21)----------
+Subject 76, Run 1: 60 epochs, unique labels: [0]
+Subject 76, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 83 (7/21)----------
+Subject 83, Run 1: 60 epochs, unique labels: [0]
+Subject 83, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 36 (8/21)----------
+Subject 36, Run 1: 60 epochs, unique labels: [0]
+Subject 36, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 78 (9/21)----------
+Subject 78, Run 1: 60 epochs, unique labels: [0]
+Subject 78, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 68 (10/21)----------
+Subject 68, Run 1: 60 epochs, unique labels: [0]
+Subject 68, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 62 (11/21)----------
+Subject 62, Run 1: 60 epochs, unique labels: [0]
+Subject 62, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 103 (12/21)----------
+Subject 103, Run 1: 60 epochs, unique labels: [0]
+Subject 103, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 109 (13/21)----------
+Subject 109, Run 1: 59 epochs, unique labels: [0]
+Subject 109, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 34 (14/21)----------
+Subject 34, Run 1: 60 epochs, unique labels: [0]
+Subject 34, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 17 (15/21)----------
+Subject 17, Run 1: 60 epochs, unique labels: [0]
+Subject 17, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 48 (16/21)----------
+Subject 48, Run 1: 60 epochs, unique labels: [0]
+Subject 48, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 9 (17/21)----------
+Subject 9, Run 1: 60 epochs, unique labels: [0]
+Subject 9, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 35 (18/21)----------
+Subject 35, Run 1: 60 epochs, unique labels: [0]
+Subject 35, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 85 (19/21)----------
+Subject 85, Run 1: 60 epochs, unique labels: [0]
+Subject 85, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 15 (20/21)----------
+Subject 15, Run 1: 60 epochs, unique labels: [0]
+Subject 15, Run 2: 60 epochs, unique labels: [1]
+----------Experiment 5 - Preprocessing subject 90 (21/21)----------
+Subject 90, Run 1: 60 epochs, unique labels: [0]
+Subject 90, Run 2: 60 epochs, unique labels: [1]
+
+----------Finished preprocessing experiment for subjects: [102, 58, 46, 60, 2, 76, 83, 36, 78, 68, 62, 103, 109, 34, 17, 48, 9, 35, 85, 15, 90]----------
+
+
+
+----------TRAIN DATA----------
+
+Train data: 6 experiments
+Experiment 0 - (3982, 64, 271) epochs, labels: (3982,)
+Unique labels: [0 1]
+Experiment 0 - Accuracy: 0.61 (+/- 0.03)
+Experiment 1 - (3973, 64, 271) epochs, labels: (3973,)
+Unique labels: [0 1]
+Experiment 1 - Accuracy: 0.59 (+/- 0.04)
+Experiment 2 - (3964, 64, 271) epochs, labels: (3964,)
+Unique labels: [0 1]
+Experiment 2 - Accuracy: 0.59 (+/- 0.06)
+Experiment 3 - (3975, 64, 271) epochs, labels: (3975,)
+Unique labels: [0 1]
+Experiment 3 - Accuracy: 0.57 (+/- 0.03)
+Experiment 4 - (7955, 64, 271) epochs, labels: (7955,)
+Unique labels: [0 1]
+Experiment 4 - Accuracy: 0.61 (+/- 0.03)
+Experiment 5 - (10556, 64, 91) epochs, labels: (10556,)
+Unique labels: [0 1]
+Experiment 5 - Accuracy: 0.79 (+/- 0.00)
+
+
+----------TEST DATA----------
+
+Test data: 6 experiments, models: 6
+Experiment 0 - Test Score: 0.61
+Experiment 0 - Test Accuracy: 0.61
+Experiment 1 - Test Score: 0.61
+Experiment 1 - Test Accuracy: 0.61
+Experiment 2 - Test Score: 0.64
+Experiment 2 - Test Accuracy: 0.64
+Experiment 3 - Test Score: 0.61
+Experiment 3 - Test Accuracy: 0.61
+Experiment 4 - Test Score: 0.62
+Experiment 4 - Test Accuracy: 0.62
+Experiment 5 - Test Score: 0.75
+Experiment 5 - Test Accuracy: 0.75
+Total Accuracy: 0.6418
