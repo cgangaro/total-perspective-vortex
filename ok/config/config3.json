@@ -1,5 +1,5 @@
 {
-    "dataLocation": "C:/Users/rocke/mne_data",
+    "dataLocation": "/home/cgangaro/sgoinfre/mne_data",
     "loadData": true,
     "saveData": false,
     "makeMontage": true,

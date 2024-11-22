@@ -7,45 +7,24 @@ import pickle
 from mne.datasets import eegbci
 from mne import Epochs, make_fixed_length_events, pick_types, events_from_annotations
 from dataclasses import asdict, dataclass
+from dataclassModels import PreProcessConfiguration
 mne.set_log_level('CRITICAL')
 mne.set_log_level('WARNING')
 mne.set_log_level('ERROR') 
 logging.basicConfig(level=logging.WARNING)
 
 
-@dataclass(frozen=True)
+@dataclass
 class Experiment:
     id: int
     name: str
     runs: List[int]
 
 
-@dataclass
-class PreProcessConfiguration:
-    dataLocation: str = "/home/cgangaro/sgoinfre/mne_data"
-    loadData: bool = False
-    saveData: bool = True
-    makeMontage: bool = True
-    montageShape: str = "standard_1020"
-    resample: bool = True
-    resampleFreq: float = 90.0
-    lowFilter: float = 8.0
-    highFilter: float = 36.0
-    ica: bool = True
-    icaComponents: int = 20
-    eog: bool = True
-    epochsTmin: float = -1.0
-    epochsTmax: float = 3.0
-
-    @staticmethod
-    def from_dict(config_dict):
-        return PreProcessConfiguration(**config_dict)
-
-    def to_dict(self):
-        return asdict(self)
 
 
-def preprocess(subjects, experiments, config: PreProcessConfiguration, saveDirectory):
+
+def oldPreprocess(subjects, experiments, config: PreProcessConfiguration, saveDirectory):
     os.makedirs(saveDirectory, exist_ok=True)
     dataPreprocessed = []
     for exp in experiments:
@@ -53,6 +32,41 @@ def preprocess(subjects, experiments, config: PreProcessConfiguration, saveDirec
             print(f"Preprocessing experiment {exp.id} - {exp.name}")
             epochs, labels, subject_ids = preprocessOneExperiment(subjects, exp.runs, exp.id, config)
             if config.saveData:
+                filename = os.path.join(saveDirectory, f"experiment_{exp.id}.pkl")
+                save_preprocessed_data({'epochs': epochs, 'labels': labels, 'subject_ids': subject_ids}, filename)
+            dataPreprocessed.append(
+                {
+                    'experiment': exp.id,
+                    'experiment_name': exp.name,
+                    'epochs': epochs,
+                    'labels': labels,
+                    'subject_ids': subject_ids
+                }
+            )
+        else:
+            filename = os.path.join(saveDirectory, f"experiment_{exp.id}.pkl")
+            data = load_preprocessed_data(filename)
+            dataPreprocessed.append(
+                {
+                    'experiment': exp.id,
+                    'experiment_name': exp.name,
+                    'epochs': data['epochs'],
+                    'labels': data['labels'],
+                    'subject_ids': data['subject_ids']
+                }
+            )
+    return dataPreprocessed
+
+def preprocess(saveDirectory, config: PreProcessConfiguration, subjects = [], experiments = [], saveData = False, loadData = False):
+    if saveData:
+        os.makedirs(saveDirectory, exist_ok=True)
+    dataPreprocessed = []
+    print(f"DataDirectory: {saveDirectory}, experiments: {experiments}, loadData: {loadData}, saveData: {saveData}")
+    for exp in experiments:
+        if not loadData:
+            print(f"Preprocessing experiment {exp.id} - {exp.name}")
+            epochs, labels, subject_ids = preprocessOneExperiment(subjects, exp.runs, exp.id, config)
+            if saveData:
                 filename = os.path.join(saveDirectory, f"experiment_{exp.id}.pkl")
                 save_preprocessed_data({'epochs': epochs, 'labels': labels, 'subject_ids': subject_ids}, filename)
             dataPreprocessed.append(

@@ -1,0 +1,2 @@
+predict
+python ok/predict.py --data /home/cgangaro/goinfre/testDataSave --models models --config

@@ -1,7 +1,5 @@
 {
-    "dataLocation": "C:/Users/rocke/mne_data",
-    "loadData": true,
-    "saveData": false,
+    "dataLocation": "/home/cgangaro/goinfre/mne_data",
     "makeMontage": true,
     "montageShape": "standard_1020",
     "resample": true,

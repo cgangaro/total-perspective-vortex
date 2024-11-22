@@ -13,7 +13,7 @@ from CSP import CSP
 from WaveletFeatureExtractor import WaveletFeatureExtractor
 from preprocess import PreProcessConfiguration, preprocess, Experiment
 from WaveletTransformer import WaveletTransformer
-from processTest import get_baseline_events
+from utils import saveModels
 
 
 def main():
@@ -57,7 +57,7 @@ def main():
         Experiment(1, "Imagine opening and closing left or right fist", [4, 8, 12]),
         Experiment(2, "Open and close both fists or both fee", [5, 9, 13]),
         Experiment(3, "Imagine opening and closing both fists or both feet", [6, 10, 14]),
-        Experiment(4, "Imagine/execute open and close left or right fist", [3, 4, 7, 8, 11, 12]),
+        Experiment(4, "Imagine/execute open and close left or right fist", [5, 6, 9, 10, 13, 14]),
         Experiment(5, "Baseline eyes open or closed", [1, 2])
     ]
 
@@ -74,8 +74,8 @@ def main():
     trainSubjects = subjects[sizeTestTab:]
     print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
     
-    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, "/home/cgangaro/sgoinfre/trainDataSave90")
-    dataTestPreprocessed = preprocess(testSubjects, experiments, config, "/home/cgangaro/sgoinfre/testDataSave90")
+    dataTrainPreprocessed = preprocess(trainSubjects, experiments, config, trainDataDir)
+    dataTestPreprocessed = preprocess(testSubjects, experiments, config, testDataDir)
 
     print("\n\n----------TRAIN DATA----------\n")
     print(f"Train data: {len(dataTrainPreprocessed)} experiments")
@@ -132,7 +132,9 @@ def main():
         accuracyTotal += accuracy
     accuracyTotal /= len(dataTestPreprocessed)
     print(f"Total Accuracy: {accuracyTotal:.4f}")
-        
+    saveModels(models)
+
+
 if __name__ == "__main__":
     main()
 
