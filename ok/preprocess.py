@@ -116,7 +116,7 @@ def preprocessOneExperiment(subjects, runs, expId, config: PreProcessConfigurati
     return epochs, labels, subject_ids
 
 
-def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfiguration):
+def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfiguration, display=False):
     print(f"Preprocessing subject {subject} for runs {runs}")
     rawFnames = eegbci.load_data(subject, runs=runs, verbose="ERROR", path=config.dataLocation)
     rawBrut = [mne.io.read_raw_edf(f, preload=True, stim_channel='auto') for f in rawFnames]
@@ -127,8 +127,18 @@ def preprocessOneSubjectOneExperiment(subject, runs, config: PreProcessConfigura
 
     if config.makeMontage:
         rawBrutConcat.set_montage(config.montageShape)
+        if display:
+            biosemi_montage = mne.channels.make_standard_montage(config.montageShape)
+            biosemi_montage.plot()
     
+    if display:
+        rawBrutConcat.plot(n_channels=3, duration = 2.5)
+        rawBrutConcat.plot_psd(average=True)
+        rawBrutConcat.plot_psd(average=False)
     rawBrutConcat.filter(config.lowFilter, config.highFilter, fir_design='firwin', skip_by_annotation='edge')
+    if display:
+        rawBrutConcat.plot_psd(average=True)
+        rawBrutConcat.plot_psd(average=False)
 
     picks = pick_types(rawBrutConcat.info, meg=False, eeg=True, stim=False, eog=False, exclude='bads')
 
