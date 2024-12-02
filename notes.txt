@@ -1,0 +1,6 @@
+predict
+python ok/predict.py --data /home/cgangaro/goinfre/testDataSave --models models --config
+
+python ok/preprocessVisualization.py --subject 1 --task 3 --preprocess_config ok/config/config9.json
+
+python ok/train.py --preprocess_config ok/config/config9.json --load_data
