@@ -1,6 +1,6 @@
 import argparse
 from utils.ExternalFilesProcess import loadDatasetConfigFromJson, loadExperimentsFromJson, loadPreProcessConfigFromJson
-from dataclassModels import TrainArgs, getArgsException
+from utils.dataclassModels import TrainArgs, getArgsException
 
 
 def getArgsForTrain():
@@ -11,29 +11,28 @@ def getArgsForTrain():
         parser.add_argument('--experiments', type=str, required=False, help='Path to the experiments config file')
         parser.add_argument('--load_data', action='store_true', help='Charger les données prétraitées')
         parser.add_argument('--save_data', action='store_true', help='Enregistrer les données prétraitées')
-        parser.add_argument('--train_data_dir', type=str, help='Data directory to save/load preprocessed train data')
-        parser.add_argument('--test_data_dir', type=str, help='Data directory to save/load preprocessed test data')
-        parser.add_argument('--save_models_dir', type=str, help='Directory to save models')
+        parser.add_argument('--train_data_dir', type=str, required=False, help='Data directory to save/load preprocessed train data')
+        parser.add_argument('--test_data_dir', type=str, required=False, help='Data directory to save/load preprocessed test data')
+        parser.add_argument('--save_models_dir', type=str, required=False, help='Directory to save models')
         
         args = parser.parse_args()
 
         datasetConfigFilePath = args.dataset_config
         if datasetConfigFilePath is None:
-            datasetConfigFilePath = "ok/dataset_config.json"
+            datasetConfigFilePath = "config/dataset_config.json"
 
         experimentsConfigFilePath = args.experiments
         if experimentsConfigFilePath is None:
-            experimentsConfigFilePath = "ok/experiments.json"
+            experimentsConfigFilePath = "config/experiments_config.json"
 
         preprocessConfigFilePath = args.preprocess_config
         if preprocessConfigFilePath is None:
-            preprocessConfigFilePath = "ok/preprocess_config.json"
+            preprocessConfigFilePath = "config/preprocess_config.json"
 
         try:
             datasetConfig = loadDatasetConfigFromJson(datasetConfigFilePath)
         except Exception as e:
             raise Exception("Error loading dataset config failed: ", e)
-        preprocessConfigFilePath = args.preprocess_config
         try:
             preProcessConfig = loadPreProcessConfigFromJson(preprocessConfigFilePath)
         except Exception as e:
@@ -55,9 +54,9 @@ def getArgsForTrain():
         saveModelsDir = args.save_models_dir
 
         if trainDataDir is None or trainDataDir == "":
-            trainDataDir = "/home/cgangaro/goinfre/trainDataSave"
+            trainDataDir = "/home/cgangaro/goinfre/trainDataSaveIR"
         if testDataDir is None or testDataDir == "":
-            testDataDir = "/home/cgangaro/goinfre/trainDataSave"
+            testDataDir = "/home/cgangaro/goinfre/testDataSaveIR"
         if saveModelsDir is None or saveModelsDir == "":
             saveModelsDir = "/home/cgangaro/goinfre/models"
         
@@ -68,8 +67,10 @@ def getArgsForTrain():
             testDataDir=testDataDir,
             modelsDir=saveModelsDir,
             datasetConfig=datasetConfig,
-            experiments=experimentsConfig,
-            preprocessConfig=preProcessConfig
+            experimentsConfig=experimentsConfig,
+            preprocessConfig=preProcessConfig,
+            saveData=args.save_data,
+            loadData=args.load_data
         )
 
     except Exception as e:

@@ -3,29 +3,20 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class CSP(TransformerMixin, BaseEstimator):
-    """
-    CSP implementation based on MNE implementation
 
-    """
-    def __init__(self, n_components=4, reg=None, log=None, cov_est='concat',
-                 transform_into='average_power', norm_trace=False,
-                 cov_method_params=None, rank=None,
-                 component_order='mutual_info'):
-        """
-        Initializing the different optional parameters.
-        Some checks might not be full, and all options not implemented.
-        We just created the parser based on the original implementation of the CSP of MNE.
+    def __init__(
+            self,
+            n_components=16,
+            reg=None,
+            log=True,
+            cov_est='concat',
+            transform_into='average_power',
+            norm_trace=False,
+            cov_method_params=None,
+            rank=None,
+            component_order='mutual_info'
+        ):
 
-        :param n_components:
-        :param reg:
-        :param log:
-        :param cov_est:
-        :param transform_into:
-        :param norm_trace:
-        :param cov_method_params:
-        :param rank:
-        :param component_order:
-        """
         if not isinstance(n_components, int):
             raise ValueError('n_components must be an integer.')
         self.n_components = n_components
@@ -48,29 +39,11 @@ class CSP(TransformerMixin, BaseEstimator):
         self.std_ = 0
 
     def _calc_covariance(self, X, ddof=0):
-        """
-        Calculate the covariance based on numpy implementation
-
-        :param X:
-        :param ddof:ddof=1 will return the unbiased estimate, even if both fweights and aweights are specified
-                    ddof=0 will return the simple average
-        :return:
-        """
         X -= X.mean(axis=1)[:, None]
         N = X.shape[1]
         return np.dot(X, X.T.conj()) / float(N - ddof)
 
     def _compute_covariance_matrices(self, X, y):
-        """
-        Compute covariance to every class
-
-        :param X:ndarray, shape (n_epochs, n_channels, n_times)
-                The data on which to estimate the CSP.
-        :param y:array, shape (n_epochs,)
-                The class for each epoch.
-
-        :return:instance of CSP
-        """
         _, n_channels, _ = X.shape
         covs = []
 
@@ -84,16 +57,6 @@ class CSP(TransformerMixin, BaseEstimator):
         return np.stack(covs)
 
     def fit(self, X, y):
-        """
-        Estimate the CSP decomposition on epochs.
-
-        :param X:ndarray, shape (n_epochs, n_channels, n_times)
-                The data on which to estimate the CSP.
-        :param y:array, shape (n_epochs,)
-                The class for each epoch.
-
-        :return:instance of CSP
-        """
         self._classes = np.unique(y)
         n_classes = len(self._classes)
 
@@ -117,12 +80,6 @@ class CSP(TransformerMixin, BaseEstimator):
             return self
 
     def transform(self, X):
-        """
-        Estimate epochs sources given the CSP filters.
-
-        :param X: ndarray
-        :return: ndarray
-        """
         if not isinstance(X, np.ndarray):
             raise ValueError("X should be of type ndarray (got %s)." % type(X))
         if self.filters_ is None:
@@ -142,24 +99,10 @@ class CSP(TransformerMixin, BaseEstimator):
         return X
 
     def fit_transform(self, X, y):
-        """
-        Appluy fit and transform
-
-        :param X:
-        :param y:
-        :param kwargs:
-        :return:
-        """
         self.fit(X, y)
         return self.transform(X)
 
     def _decompose_covs(self, covs):
-        """
-         Return the eigenvalues and eigenvectors of a complex Hermitian ( conjugate symmetric )
-
-        :param covs:
-        :return:
-        """
         from scipy import linalg
         n_classes = len(covs)
         if n_classes == 2:
@@ -169,12 +112,6 @@ class CSP(TransformerMixin, BaseEstimator):
         return eigen_vectors, eigen_values
 
     def _order_components(self, eigen_values):
-        """
-        Sort components using the mutual info method.
-
-        :param eigen_values:
-        :return:
-        """
         n_classes = len(self._classes)
         if n_classes == 2:
             ix = np.argsort(np.abs(eigen_values - 0.5))[::-1]

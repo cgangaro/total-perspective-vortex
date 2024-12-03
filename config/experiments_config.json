@@ -1,31 +1,6 @@
 [
     {
-        "id": 0,
-        "name": "Open and close left or right fist",
-        "runs": [3, 7, 11]
-    },
-    {
-        "id": 1,
-        "name": "Imagine opening and closing left or right fist",
-        "runs": [4, 8, 12]
-    },
-    {
-        "id": 2,
-        "name": "Open and close both fists or both feet",
-        "runs": [5, 9, 13]
-    },
-    {
-        "id": 3,
-        "name": "Imagine opening and closing both fists or both feet",
-        "runs": [6, 10, 14]
-    },
-    {
-        "id": 4,
-        "name": "Imagine/execute open and close left or right fist",
-        "runs": [5, 6, 9, 10, 13, 14]
-    },
-    {
-        "id": 5,
+        "id": 8,
         "name": "Baseline eyes open or closed",
         "runs": [1, 2]
     }

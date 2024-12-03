@@ -45,19 +45,23 @@ class PredictArgs:
     dataDir: str
     modelsDir: str
     datasetConfig: DatasetConfig
-    experiments: List[Experiment]
+    experimentsConfig: List[Experiment]
     preprocessConfig: PreProcessConfiguration
+    playBack: bool
 
 
 @dataclass
 class TrainArgs:
     subjects: List[int]
     tasks: List[int]
-    dataDir: str
+    trainDataDir: str
+    testDataDir: str
     modelsDir: str
     datasetConfig: DatasetConfig
-    experiments: List[Experiment]
+    experimentsConfig: List[Experiment]
     preprocessConfig: PreProcessConfiguration
+    saveData: bool
+    loadData: bool
 
 
 class getArgsException(Exception):

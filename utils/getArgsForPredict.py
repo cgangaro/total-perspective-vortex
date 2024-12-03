@@ -1,7 +1,7 @@
 import argparse
 import os
 from utils.ExternalFilesProcess import loadDatasetConfigFromJson, loadExperimentsFromJson, loadPreProcessConfigFromJson
-from dataclassModels import Args
+from utils.dataclassModels import PredictArgs
 
 
 class getArgsException(Exception):
@@ -12,7 +12,7 @@ class getArgsException(Exception):
         return f"[Error getting program arguments]: {self.args[0]}"
 
 
-def getArgs():
+def getArgsForPredict():
     try:
         parser = argparse.ArgumentParser(description='EEG Preprocessing and Classification - Predict')
         parser.add_argument(
@@ -33,7 +33,8 @@ def getArgs():
         parser.add_argument('--models', type=str, required=False, help='Path to the models directory')
         parser.add_argument('--config', type=str, required=False, help='Path to the dataset config file')
         parser.add_argument('--experiments', type=str, required=False, help='Path to the experiments config file')
-        parser.add_argument('--preprocess_config', type=str, required=True, help='Path to the preprocess config file')
+        parser.add_argument('--preprocess_config', type=str, required=False, help='Path to the preprocess config file')
+        parser.add_argument('--play_back', action='store_true', help='Play back the EEG data')
         
         args = parser.parse_args()
 
@@ -44,15 +45,18 @@ def getArgs():
 
         dataConfigFilePath = args.config
         if dataConfigFilePath is None:
-            dataConfigFilePath = "ok/dataset_config.json"
+            dataConfigFilePath = "config/dataset_config.json"
 
         experimentsConfigFilePath = args.experiments
         if experimentsConfigFilePath is None:
-            experimentsConfigFilePath = "ok/experiments.json"
+            experimentsConfigFilePath = "config/experiments_config.json"
 
         preprocessConfigFilePath = args.preprocess_config
         if preprocessConfigFilePath is None:
-            preprocessConfigFilePath = "ok/preprocess_config.json"
+            preprocessConfigFilePath = "config/preprocess_config.json"
+        
+        if modelsDir is None or modelsDir == "":
+            modelsDir = "/home/cgangaro/goinfre/models"
     
         try:
             print("Loading dataset config from ", dataConfigFilePath)
@@ -96,14 +100,15 @@ def getArgs():
         except Exception as e:
             raise Exception("loading preprocess config failed: ", e)
         
-        return Args(
+        return PredictArgs(
             subjects=subjects,
             tasks=tasks,
             dataDir=dataDir,
             modelsDir=modelsDir,
             datasetConfig=datasetConfig,
-            experiments=experiments,
-            preprocessConfig=preProcessConfig
+            experimentsConfig=experiments,
+            preprocessConfig=preProcessConfig,
+            playBack=args.play_back
         )
 
     except Exception as e:

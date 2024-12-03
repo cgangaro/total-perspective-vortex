@@ -6,9 +6,9 @@
     "resampleFreq": 90.0,
     "lowFilter": 8.0,
     "highFilter": 40.0,
-    "ica": true,
+    "ica": false,
     "icaComponents": 30,
     "eog": true,
-    "epochsTmin": -0.5,
-    "epochsTmax": 2.5
+    "epochsTmin": 0.0,
+    "epochsTmax": 2.0
 }

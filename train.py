@@ -25,19 +25,19 @@ def main():
         
         dataTrainPreprocessed = preprocess(
             saveDirectory=args.trainDataDir,
-            config=args.preProcessConfig,
+            config=args.preprocessConfig,
             subjects=trainSubjects,
             experiments=args.experimentsConfig,
-            saveData=args.save_data,
-            loadData=args.load_data
+            saveData=args.saveData,
+            loadData=args.loadData
         )
         dataTestPreprocessed = preprocess(
             saveDirectory=args.testDataDir,
-            config=args.preProcessConfig,
+            config=args.preprocessConfig,
             subjects=testSubjects,
             experiments=args.experimentsConfig,
-            saveData=args.save_data,
-            loadData=args.load_data
+            saveData=args.saveData,
+            loadData=args.loadData
         )
 
         print("\n\n----------TRAIN DATA----------\n")
@@ -96,9 +96,7 @@ def main():
         
         accuracyTotal /= len(dataTestPreprocessed)
         print(f"Total Accuracy: {accuracyTotal:.4f}")
-        if saveModelsDir is None or saveModelsDir == "":
-            saveModelsDir = "models"
-        saveModels(models, saveModelsDir)
+        saveModels(models, args.modelsDir)
 
 
     except Exception as e:

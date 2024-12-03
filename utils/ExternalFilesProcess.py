@@ -2,7 +2,7 @@ import json
 import os
 import joblib
 from typing import List
-from dataclassModels import Experiment, DatasetConfig, PreProcessConfiguration
+from utils.dataclassModels import Experiment, DatasetConfig, PreProcessConfiguration
 
 
 def loadExperimentsFromJson(json_file: str) -> List[Experiment]:
