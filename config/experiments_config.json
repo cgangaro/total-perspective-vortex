@@ -1,7 +1,7 @@
 [
     {
-        "id": 8,
-        "name": "Baseline eyes open or closed",
-        "runs": [1, 2]
+        "id": 0,
+        "name": "Open and close left or right fist",
+        "runs": [3, 7, 11]
     }
 ]

@@ -1,14 +1,14 @@
 {
-    "dataLocation": "/home/cgangaro/goinfre/mne_data",
+    "dataLocation": "C:/Users/rocke/mne_data",
     "makeMontage": true,
-    "montageShape": "standard_1020",
+    "montageShape": "standard_1005",
     "resample": true,
-    "resampleFreq": 90.0,
+    "resampleFreq": 160.0,
     "lowFilter": 8.0,
     "highFilter": 40.0,
     "ica": false,
     "icaComponents": 30,
     "eog": true,
-    "epochsTmin": 0.0,
-    "epochsTmax": 2.0
+    "epochsTmin": -0.0,
+    "epochsTmax": 2
 }
