@@ -10,7 +10,15 @@ def loadExperimentsFromJson(json_file: str) -> List[Experiment]:
         raise Exception(f"File {json_file} does not exist")
     with open(json_file, 'r') as file:
         data = json.load(file)
-        experiments = [Experiment(**item) for item in data]
+        experiments = [
+            Experiment(
+                id=item["id"],
+                name=item["name"],
+                runs=item["runs"],
+                mapping={int(k): v for k, v in item["mapping"].items()}
+            )
+            for item in data
+        ]
     return experiments
 
 def loadDatasetConfigFromJson(json_file: str) -> DatasetConfig:

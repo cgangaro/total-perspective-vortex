@@ -2,6 +2,61 @@
     {
         "id": 0,
         "name": "Open and close left or right fist",
-        "runs": [3, 7, 11]
+        "runs": [3, 7, 11],
+        "mapping": {
+            "0": "Rest",
+            "1": "Left fist",
+            "2": "Right fist"
+        }
+    },
+    {
+        "id": 1,
+        "name": "Imagine opening and closing left or right fist",
+        "runs": [4, 8, 12],
+        "mapping": {
+            "0": "Rest",
+            "1": "Imagine left fist",
+            "2": "Imagine right fist"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Open and close both fists or both feet",
+        "runs": [5, 9, 13],
+        "mapping": {
+            "0": "Rest",
+            "1": "Both fists",
+            "2": "Both feet"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Imagine opening and closing both fists or both feet",
+        "runs": [6, 10, 14],
+        "mapping": {
+            "0": "Rest",
+            "1": "Imagine both fists",
+            "2": "Imagine both feet"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Imagine/execute open and close both fists or both feet",
+        "runs": [5, 6, 9, 10, 13, 14],
+        "mapping": {
+            "0": "Rest",
+            "1": "Both fists",
+            "2": "Both feet"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Imagine/execute open and close left or right fist",
+        "runs": [3, 7, 11, 4, 8, 12],
+        "mapping": {
+            "0": "Rest",
+            "1": "Left fist",
+            "2": "Right fist"
+        }
     }
 ]

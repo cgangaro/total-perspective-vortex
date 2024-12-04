@@ -67,11 +67,11 @@ def main():
 
             print(f"Experiment {expId} - {epochs_data.shape} epochs, labels: {labels.shape}")
             print(f"Unique labels: {np.unique(labels)}")
-            epochs_data, labels = average_over_epochs(
-                epochs_data,
-                labels,
-                event_id
-            )
+            # epochs_data, labels = average_over_epochs(
+            #     epochs_data,
+            #     labels,
+            #     event_id
+            # )
 
             cv = ShuffleSplit(
                 n_splits=3,
@@ -82,7 +82,8 @@ def main():
 
             clf = make_pipeline(
                 # CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
-                CSP(n_components=16, reg=None, log=True, norm_trace=False),
+                # CSP(n_components=16, reg=None, log=True, norm_trace=False),
+                MyCSP(n_components=4),
                 # WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
                 StandardScaler(),
                 # RandomForestClassifier(n_estimators=250, max_depth=None)

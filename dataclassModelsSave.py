@@ -13,7 +13,6 @@ class Experiment:
     id: int
     name: str
     runs: List[int]
-    mapping: dict
 
 
 @dataclass
@@ -50,6 +49,18 @@ class PredictArgs:
     preprocessConfig: PreProcessConfiguration
     playBack: bool
 
+# @dataclass
+# class TrainArgs:
+#     subjects: List[int]
+#     tasks: List[int]
+#     trainDataDir: str
+#     testDataDir: str
+#     modelsDir: str
+#     datasetConfig: DatasetConfig
+#     experimentsConfig: List[Experiment]
+#     preprocessConfig: PreProcessConfiguration
+#     saveData: bool
+#     loadData: bool
 
 @dataclass
 class TrainArgs:
