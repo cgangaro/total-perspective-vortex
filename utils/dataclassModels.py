@@ -43,7 +43,6 @@ class PreProcessConfiguration:
 class PredictArgs:
     subjects: List[int]
     tasks: List[int]
-    dataDir: str
     modelsDir: str
     datasetConfig: DatasetConfig
     experimentsConfig: List[Experiment]
@@ -57,6 +56,7 @@ class TrainArgs:
     datasetConfig: DatasetConfig
     experimentsConfig: List[Experiment]
     preprocessConfig: PreProcessConfiguration
+    splitBySubjects: bool = False
 
 
 class getArgsException(Exception):

@@ -1,14 +1,14 @@
 {
-    "dataLocation": "/home/cgangaro/goinfre/mne_data",
+    "dataLocation": "/home/cgangaro/goinfre/mne_data/MNE-eegbci-data/files/eegmmidb/1.0.0/",
     "makeMontage": true,
     "montageShape": "standard_1005",
     "resample": true,
     "resampleFreq": 160.0,
-    "lowFilter": 8.0,
-    "highFilter": 40.0,
+    "lowFilter": 1.0,
+    "highFilter": 15.0,
     "ica": false,
     "icaComponents": 30,
     "eog": true,
-    "epochsTmin": -0.0,
-    "epochsTmax": 2
+    "epochsTmin": -0.5,
+    "epochsTmax": 1
 }

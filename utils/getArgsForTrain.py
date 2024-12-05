@@ -10,6 +10,7 @@ def getArgsForTrain():
         parser.add_argument('--preprocess_config', type=str, required=False, help='Path to the preprocess config file')
         parser.add_argument('--experiments_config', type=str, required=False, help='Path to the experiments config file')
         parser.add_argument('--save_models_dir', type=str, required=False, help='Directory to save models')
+        parser.add_argument('--split_by_subjects', action='store_true', help='Split the dataset by subjects')
         
         args = parser.parse_args()
 
@@ -55,6 +56,7 @@ def getArgsForTrain():
             datasetConfig=datasetConfig,
             experimentsConfig=experimentsConfig,
             preprocessConfig=preProcessConfig,
+            splitBySubjects=args.split_by_subjects
         )
 
     except Exception as e:
