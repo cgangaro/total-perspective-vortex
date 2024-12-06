@@ -1,168 +1,156 @@
 import random
 import numpy as np
-import math
-from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import ShuffleSplit, cross_val_score
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from utils.CSP import CSP
-from utils.MyCSP import MyCSP
-from utils.preprocess import preprocess, preprocessMEGA
 from utils.ExternalFilesProcess import saveModels
+from sklearn.pipeline import Pipeline
 from utils.getArgsForTrain import getArgsForTrain
+
+from utils.preProcess import preprocessOneExperiment
+
+shuffle_split_size = 0.3
+
 
 def main():
 
     try:
         print("Train program")
-        
         args = getArgsForTrain()
-        
-        random.shuffle(args.subjects)
-        sizeTestTab = int(len(args.subjects) * 0.25)
-        testSubjects = args.subjects[:sizeTestTab]
-        trainSubjects = args.subjects[sizeTestTab:]
-        print(f"{len(trainSubjects)} train subjects, {len(testSubjects)} test subjects")
-        
-        # dataTrainPreprocessed = preprocess(
-        #     saveDirectory=args.trainDataDir,
-        #     config=args.preprocessConfig,
-        #     subjects=trainSubjects,
-        #     experiments=args.experimentsConfig,
-        #     saveData=args.saveData,
-        #     loadData=args.loadData
-        # )
-        # dataTestPreprocessed = preprocess(
-        #     saveDirectory=args.testDataDir,
-        #     config=args.preprocessConfig,
-        #     subjects=testSubjects,
-        #     experiments=args.experimentsConfig,
-        #     saveData=args.saveData,
-        #     loadData=args.loadData
-        # )
+        subjects = args.datasetConfig.subjects
+        experiments = args.experimentsConfig
 
-        dataTrainPreprocessed, dataTestPreprocessed = preprocessMEGA(
-            saveDirectory=args.trainDataDir,
-            config=args.preprocessConfig,
-            subjects=args.subjects,
-            experiments=args.experimentsConfig,
-            saveData=args.saveData,
-            loadData=args.loadData
-        )
-        print(f"Train data: {dataTrainPreprocessed}")
+        if args.splitBySubjects:
+            random.shuffle(subjects)
+            sizeTestTab = int(len(subjects) * shuffle_split_size)
+            testSubjects = subjects[:sizeTestTab]
+            trainSubjects = subjects[sizeTestTab:]
+            print(f"{len(trainSubjects)} train subjects, "
+                  f"{len(testSubjects)} test subjects")
+        else:
+            trainSubjects = subjects
 
-        print("\n\n----------TRAIN DATA----------\n")
-        print(f"Train data: {len(dataTrainPreprocessed)} experiments")
-        models = {}
-        for dataTrain in dataTrainPreprocessed:
-            expId = dataTrain['experiment']
-            epochs = dataTrain['epochs']
-            labels = dataTrain['labels']
-            event_id = dataTrain['event_id']
-            # subject_ids = dataTrain['subject_ids']
+        print("\n\n----------TRAIN----------\n")
+        expData = []
+        for i, exp in enumerate(experiments):
+
+            print(f"Experiment: {exp.id} - {exp.name}")
+            print(f"Runs: {exp.runs}")
+            print(f"Mapping: {exp.mapping}")
+
+            if args.splitBySubjects:
+                xTrainAvg, yTrainAvg = preprocessOneExperiment(
+                    subjects=trainSubjects,
+                    runs=exp.runs,
+                    mapping=exp.mapping,
+                    config=args.preprocessConfig,
+                    balance=True,
+                    average=True
+                )
+                xTest, yTest = preprocessOneExperiment(
+                    subjects=testSubjects,
+                    runs=exp.runs,
+                    mapping=exp.mapping,
+                    config=args.preprocessConfig,
+                    balance=False,
+                    average=False
+                )
+            else:
+                xTrainAvg, yTrainAvg, xTest, yTest = preprocessOneExperiment(
+                    subjects=trainSubjects,
+                    runs=exp.runs,
+                    mapping=exp.mapping,
+                    config=args.preprocessConfig,
+                    balance=True,
+                    average=True,
+                    splitData=True
+                )
             
-            # epochs_data = epochs.get_data()
-            epochs_data = epochs
+            csp = CSP(n_components=8)
+            lda = LinearDiscriminantAnalysis(solver="eigen", shrinkage='auto')
 
-            print(f"Experiment {expId} - {epochs_data.shape} epochs, labels: {labels.shape}")
-            print(f"Unique labels: {np.unique(labels)}")
-            # epochs_data, labels = average_over_epochs(
-            #     epochs_data,
-            #     labels,
-            #     event_id
-            # )
+            pipeline = Pipeline([
+                ("CSP", csp),
+                ("LDA", lda)
+            ])
+
+            pipeline.fit(xTrainAvg, yTrainAvg)
 
             cv = ShuffleSplit(
-                n_splits=3,
-                test_size=0.2
+                n_splits=10,
+                test_size=shuffle_split_size,
+                random_state=42
             )
-            # cv = GroupKFold(n_splits=5)
-            # cv = LeaveOneGroupOut()
 
-            clf = make_pipeline(
-                # CSP(n_components=6, reg=None, transform_into='csp_space', norm_trace=False),
-                # CSP(n_components=16, reg=None, log=True, norm_trace=False),
-                MyCSP(n_components=4),
-                # WaveletFeatureExtractor(wavelet='morl', scales=np.arange(1, 32), mode='magnitude'),
-                StandardScaler(),
-                # RandomForestClassifier(n_estimators=250, max_depth=None)
-                LinearDiscriminantAnalysis(solver='svd', tol=0.0001)
+            score = cross_val_score(
+                estimator=pipeline,
+                X=xTrainAvg,
+                y=yTrainAvg,
+                cv=cv,
+                error_score='raise'
             )
-            # scores = cross_val_score(clf, epochs_data, labels, cv=cv, groups=subject_ids, n_jobs=1)
-            scores = cross_val_score(clf, epochs_data, labels, cv=cv, n_jobs=1)
+            print(f"Crossval scores: {score}\n")
 
-            print(f"Experiment {expId} - Accuracy: {np.mean(scores):.2f} (+/- {np.std(scores)*2:.2f})")
+            expData.append({
+                "id": exp.id,
+                "name": exp.name,
+                "xTest": xTest,
+                "yTest": yTest,
+                "xTrain": xTrainAvg,
+                "yTrain": yTrainAvg,
+                "pipeline": pipeline,
+                "score": score
+            })
 
-            clf.fit(epochs_data, labels)
-            models[expId] = clf
+        print("\n\n----------TEST----------\n")
+        if args.splitBySubjects:
+            print(f"Test data: {len(testSubjects)} subjects."
+                  f"Subjects: {testSubjects}\n")
+        test_scores = []
+        train_scores = []
+        crossval_scores = []
+        print()
 
-        print("\n\n----------TEST DATA----------\n")
-        print(f"Test data: {len(dataTestPreprocessed)} experiments, models: {len(models)}")
+        for data in expData:
+            id = data["id"]
+            name = data["name"]
+            X_test = data["xTest"]
+            y_test = data["yTest"]
+            train_score = data["pipeline"].score(
+                data["xTrain"],
+                data["yTrain"]
+            )
+            test_score = data["pipeline"].score(X_test, y_test)
 
-        accuracyTotal = 0
-        for dataTest in dataTestPreprocessed:
-            expId = dataTest['experiment']
-            epochs = dataTest['epochs']
-            labels = dataTest['labels']
-            # epochs_data = epochs.get_data()
-            epochs_data = epochs
-            clf = models[expId]
+            print(f"Experiment {id} - {name}")
+            print("Train: ", train_score)
+            train_scores.append(train_score)
 
-            test_score = clf.score(epochs_data, labels)
-            print(f"Experiment {expId} - Test Score: {test_score:.2f}")
-            predictions = clf.predict(epochs_data)
-            accuracy = accuracy_score(labels, predictions)
-            print(f"Experiment {expId} - Test Accuracy: {accuracy:.2f}")
-            accuracyTotal += accuracy
-        
-        accuracyTotal /= len(dataTestPreprocessed)
-        print(f"Total Accuracy: {accuracyTotal:.4f}")
-        saveModels(models, args.modelsDir)
+            print("Test: ", test_score)
+            test_scores.append(test_score)
 
+            print("Crossval: %f" % (np.mean(data["score"])))
+            crossval_scores.append(np.mean(data["score"]))
+
+            print()
+
+        if args.saveModels:
+            saveModels(
+                {exp["id"]: exp["pipeline"] for exp in expData},
+                args.modelsDir
+            )
+        print("Mean scores")
+        print("Train: ", round(sum(train_scores) / len(train_scores), 2))
+        print("Test: ", round(sum(test_scores) / len(test_scores), 2))
+        print("Crossval: ", round(
+            sum(crossval_scores) / len(crossval_scores), 2)
+        )
+
+        return 0
 
     except Exception as e:
         print("Error in train program: ", e)
         return 1
-
-
-def average_over_epochs(X, y, event_id):
-    print(f"X = {X}, y = {y}, event_id = {event_id}")
-    # E_test, y_test, E_train, y_train = split_epochs_train_test(X, y)
-    new_x = []
-    new_y = []
-
-    keys = list(event_id.keys())
-
-    if len(X[keys[0]]) > len(X[keys[1]]):
-        max_len = len(X[keys[1]])
-    else:
-        max_len = len(X[keys[0]])
-
-    max_avg_size = 30
-    min_amount_of_epochs = 5
-    if max_len < min_amount_of_epochs * max_avg_size:
-        max_avg_size = math.floor(max_len / min_amount_of_epochs)
-    # Optional: averaging over multiple sizes to increase dataset size
-    sizes = [max_avg_size]
-
-    for avg_size in sizes:
-        print("Averaging epochs over size: ", avg_size, "...")
-        i = 0
-        while i < max_len:
-            x_averaged = X[keys[0]][i:i+avg_size].average().get_data()
-            new_x.append(x_averaged)
-            new_y.append(event_id[keys[0]])
-
-            x_averaged = X[keys[1]][i:i+avg_size].average().get_data()
-            new_x.append(x_averaged)
-            new_y.append(event_id[keys[1]])
-
-            if i + avg_size >= len(X):
-                avg_size = len(X) - i
-            i = i + avg_size
-
-    return np.array(new_x), np.array(new_y)
 
 
 if __name__ == "__main__":

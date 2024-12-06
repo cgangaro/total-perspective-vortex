@@ -1,8 +1,7 @@
 import os
 import joblib
 from sklearn.metrics import accuracy_score
-from nuagePreProcess import preprocessOneExperiment
-from utils.preprocess import preprocess
+from utils.preProcess import preprocessOneExperiment
 from utils.getArgsForPredict import getArgsForPredict, getArgsException
 
 
@@ -15,11 +14,10 @@ def main():
         except getArgsException as e:
             print(e)
             return 1
-        
+
         subjects = args.subjects
         experiments = args.experimentsConfig
-        
-        # print(f"Args: {args}")
+
         print(f"Subjects: {subjects}\n")
 
         models = {}
@@ -38,55 +36,37 @@ def main():
             print(f"Runs: {exp.runs}")
             print(f"Mapping: {exp.mapping}")
             
-            x, y = preprocessOneExperiment(args.subjects, exp.runs, exp.mapping, args.preprocessConfig, balance=False, average=False)
+            x, y = preprocessOneExperiment(
+                args.subjects,
+                exp.runs,
+                exp.mapping,
+                args.preprocessConfig,
+                balance=False,
+                average=False
+            )
             pipeline = models[exp.id]
+
+            if args.playBack:
+                # print(f"Experiment {exp.id} - {x.shape} epochs,"
+                #       f" labels: {y.shape}")
+                print(f"x[i] shape: {x[0]}")
+                for i in range(len(x)):
+                    p = pipeline.predict(x[i])
+                    print(f"Epoch {i}/{len(x)} - Label: {y[i]} -"
+                          f" Prediction: {p[0]}")
+
             predictions = pipeline.predict(x)
             accuracy = accuracy_score(y, predictions)
             totalAccuracy += accuracy
-            print(f"Experiment {exp.id} - Test Accuracy: {accuracy:.2f} on {len(x)} epochs, {len(y)} labels\n")
+            print(f"Experiment {exp.id} - Test Accuracy: {accuracy:.2f} on "
+                  f"{len(x)} epochs, {len(y)} labels\n")
         totalAccuracy /= len(experiments)
         print(f"Total Accuracy: {totalAccuracy:.4f}")
-
-            
-        
-        # print("\n\n-----Load models-----\n")
-        # models = {}
-        # for exp in args.experimentsConfig:
-        #     modelPath = f"{args.modelsDir}/model_experiment_{exp.id}.joblib"
-        #     if not os.path.exists(modelPath):
-        #         raise Exception(f"Model file {modelPath} not found")
-        #     model = joblib.load(modelPath)
-        #     models[exp.id] = model
-
-        # print("\n\n-----Predict-----\n")
-        # print(f"Test data: {len(dataPreprocessed)} experiments, models: {len(models)}")
-
-        # accuracyTotal = 0
-        # for dataTest in dataPreprocessed:
-        #     expId = dataTest['experiment']
-        #     epochs = dataTest['epochs']
-        #     labels = dataTest['labels']
-        #     subject_ids = dataTest['subject_ids']
-        #     epochs_data = epochs.get_data()
-        #     clf = models[expId]
-
-        #     if args.playBack:
-        #         print(f"Experiment {expId} - {epochs_data.shape} epochs, labels: {labels.shape}")
-        #         for i in range(len(epochs)):
-        #             p = clf.predict(epochs_data[i].reshape(1, -1))
-        #             print(f"Epoch {i}/{len(epochs)} - Label: {labels[i]} - Prediction: {p[0]}")
-        #     predictions = clf.predict(epochs_data)
-        #     accuracy = accuracy_score(labels, predictions)
-        #     print(f"Experiment {expId} - Test Accuracy: {accuracy:.2f} on {len(epochs)} epochs, {len(labels)} labels and ({len(set(subject_ids))}) subjects")
-        #     accuracyTotal += accuracy
-        # accuracyTotal /= len(dataPreprocessed)
-        # print(f"Total Accuracy: {accuracyTotal:.4f}")
 
     except Exception as e:
         print("Error in predict program: ", e)
         return 1
-        
+
+
 if __name__ == "__main__":
     main()
-
-

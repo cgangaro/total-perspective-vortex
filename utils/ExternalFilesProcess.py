@@ -2,7 +2,11 @@ import json
 import os
 import joblib
 from typing import List
-from utils.dataclassModels import Experiment, DatasetConfig, PreProcessConfiguration
+from utils.dataclassModels import (
+    Experiment,
+    DatasetConfig,
+    PreProcessConfiguration
+)
 
 
 def loadExperimentsFromJson(json_file: str) -> List[Experiment]:
@@ -21,6 +25,7 @@ def loadExperimentsFromJson(json_file: str) -> List[Experiment]:
         ]
     return experiments
 
+
 def loadDatasetConfigFromJson(json_file: str) -> DatasetConfig:
     if not os.path.exists(json_file):
         raise Exception(f"File {json_file} does not exist")
@@ -28,6 +33,7 @@ def loadDatasetConfigFromJson(json_file: str) -> DatasetConfig:
         data = json.load(file)
         dataset_config = DatasetConfig(**data)
     return dataset_config
+
 
 def loadPreProcessConfigFromJson(json_file: str) -> PreProcessConfiguration:
     if not os.path.exists(json_file):
@@ -37,9 +43,11 @@ def loadPreProcessConfigFromJson(json_file: str) -> PreProcessConfiguration:
         config = PreProcessConfiguration.from_dict(data)
     return config
 
+
 def saveModels(models, save_directory="models"):
     os.makedirs(save_directory, exist_ok=True) 
     for exp_id, model in models.items():
-        filename = os.path.join(save_directory, f"model_experiment_{exp_id}.joblib")
+        filename = os.path.join(save_directory,
+                                f"model_experiment_{exp_id}.joblib")
         joblib.dump(model, filename)
         print(f"Modèle de l'expérience {exp_id} sauvegardé dans {filename}.")

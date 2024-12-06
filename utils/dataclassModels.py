@@ -57,6 +57,7 @@ class TrainArgs:
     experimentsConfig: List[Experiment]
     preprocessConfig: PreProcessConfiguration
     splitBySubjects: bool = False
+    saveModels: bool = False
 
 
 class getArgsException(Exception):

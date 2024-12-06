@@ -1,20 +1,17 @@
 import argparse
-import os
-from utils.ExternalFilesProcess import loadDatasetConfigFromJson, loadExperimentsFromJson, loadPreProcessConfigFromJson
-from utils.dataclassModels import PredictArgs, Experiment
-
-
-class getArgsException(Exception):
-    def __init__(self, message):
-        super().__init__(message)
-
-    def __str__(self):
-        return f"[Error getting program arguments]: {self.args[0]}"
+from utils.ExternalFilesProcess import (
+    loadDatasetConfigFromJson,
+    loadExperimentsFromJson,
+    loadPreProcessConfigFromJson
+)
+from utils.dataclassModels import PredictArgs, Experiment, getArgsException
 
 
 def getArgsForPredict():
     try:
-        parser = argparse.ArgumentParser(description='EEG Preprocessing and Classification - Predict')
+        parser = argparse.ArgumentParser(
+            description='EEG Preprocessing and Classification - Predict'
+        )
         parser.add_argument(
             '--subjects',
             type=int,
@@ -29,12 +26,17 @@ def getArgsForPredict():
             required=False,
             help="Tasks ID to use for testing"
         )
-        parser.add_argument('--models', type=str, required=False, help='Path to the models directory')
-        parser.add_argument('--experiments_config', type=str, required=False, help='Path to the experiments config file')
-        parser.add_argument('--preprocess_config', type=str, required=False, help='Path to the preprocess config file')
-        parser.add_argument('--dataset_config', type=str, required=False, help='Path to the dataset config file')
-        parser.add_argument('--play_back', action='store_true', help='Play back the EEG data')
-        
+        parser.add_argument('--models', type=str, required=False,
+                            help='Path to the models directory')
+        parser.add_argument('--experiments_config', type=str, required=False,
+                            help='Path to the experiments config file')
+        parser.add_argument('--preprocess_config', type=str, required=False,
+                            help='Path to the preprocess config file')
+        parser.add_argument('--dataset_config', type=str, required=False,
+                            help='Path to the dataset config file')
+        parser.add_argument('--play_back', action='store_true',
+                            help='Play back the EEG data')
+
         args = parser.parse_args()
 
         subjects = args.subjects
@@ -65,7 +67,9 @@ def getArgsForPredict():
             subjects = datasetConfig.subjects
 
         try:
-            experimentsConfig = loadExperimentsFromJson(experimentsConfigFilePath)
+            experimentsConfig = loadExperimentsFromJson(
+                experimentsConfigFilePath
+            )
         except Exception as e:
             raise Exception("loading experiments config failed: ", e)
         
@@ -77,7 +81,9 @@ def getArgsForPredict():
             raise Exception("No experiments found")
         
         try:
-            preProcessConfig = loadPreProcessConfigFromJson(preprocessConfigFilePath)
+            preProcessConfig = loadPreProcessConfigFromJson(
+                preprocessConfigFilePath
+            )
         except Exception as e:
             raise Exception("loading preprocess config failed: ", e)
         
@@ -95,35 +101,34 @@ def getArgsForPredict():
         raise getArgsException(e)
 
 
-
 def getExperimentsWithThisTasks(experiments, tasks):
     tasks = set(tasks)
     newExperiments = []
     for task in tasks:
         experimentsTmp = experiments.copy()
-        expFound = next((exp for exp in experimentsTmp if task in exp.runs), None)
+        expFound = next((exp for exp in experimentsTmp if task in exp.runs),
+                        None)
         while expFound is not None:
             experimentsTmp.remove(expFound)
-            newExp = next((newExp for newExp in newExperiments if expFound.id == newExp.id), None)
+            newExp = next(
+                (newExp for newExp in newExperiments
+                 if expFound.id == newExp.id),
+                None
+            )
             if newExp is None:
                 newExperiments.append(
                     Experiment(
-                        id = expFound.id,
-                        name = expFound.name,
-                        runs= [task],
-                        mapping= expFound.mapping
+                        id=expFound.id,
+                        name=expFound.name,
+                        runs=[task],
+                        mapping=expFound.mapping
                     )
                 )
             else:
                 if task not in newExp.runs:
                     newExp.runs.append(task)
-            expFound = next((exp for exp in experimentsTmp if task in exp.runs), None)
+            expFound = next((exp for exp in experimentsTmp
+                             if task in exp.runs),
+                            None)
     newExperiments.sort(key=lambda x: x.id)
     return newExperiments
-
-
-
-
-
-
-
