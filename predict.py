@@ -35,7 +35,7 @@ def main():
             print(f"Experiment: {exp.id} - {exp.name}")
             print(f"Runs: {exp.runs}")
             print(f"Mapping: {exp.mapping}")
-            
+
             x, y = preprocessOneExperiment(
                 args.subjects,
                 exp.runs,
@@ -47,12 +47,10 @@ def main():
             pipeline = models[exp.id]
 
             if args.playBack:
-                # print(f"Experiment {exp.id} - {x.shape} epochs,"
-                #       f" labels: {y.shape}")
                 print(f"x[i] shape: {x[0]}")
                 for i in range(len(x)):
                     p = pipeline.predict(x[i])
-                    print(f"Epoch {i}/{len(x)} - Label: {y[i]} -"
+                    print(f"Epoch {i + 1}/{len(x)} - Label: {y[i]} -"
                           f" Prediction: {p[0]}")
 
             predictions = pipeline.predict(x)

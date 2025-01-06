@@ -54,15 +54,15 @@ def getArgsForPredict():
         preprocessConfigFilePath = args.preprocess_config
         if preprocessConfigFilePath is None:
             preprocessConfigFilePath = "config/preprocess_config.json"
-        
+
         if modelsDir is None or modelsDir == "":
             modelsDir = "/home/cgangaro/goinfre/models"
-    
+
         try:
             datasetConfig = loadDatasetConfigFromJson(dataConfigFilePath)
         except Exception as e:
             raise Exception("loading dataset config failed: ", e)
-        
+
         if subjects is None:
             subjects = datasetConfig.subjects
 
@@ -72,21 +72,21 @@ def getArgsForPredict():
             )
         except Exception as e:
             raise Exception("loading experiments config failed: ", e)
-        
+
         if tasks is None:
             tasks = datasetConfig.tasks
         experiments = getExperimentsWithThisTasks(experimentsConfig, tasks)
-        
+
         if experiments is None or len(experiments) == 0:
             raise Exception("No experiments found")
-        
+
         try:
             preProcessConfig = loadPreProcessConfigFromJson(
                 preprocessConfigFilePath
             )
         except Exception as e:
             raise Exception("loading preprocess config failed: ", e)
-        
+
         return PredictArgs(
             subjects=subjects,
             tasks=tasks,

@@ -72,13 +72,19 @@ def readDataset(
     for i, sub in enumerate(subjects):
         for run in runs:
 
-            filePath = config.dataLocation + f"S{sub:03d}/S{sub:03d}R{run:02d}.edf"
+            filePath = (config.dataLocation +
+                        f"S{sub:03d}/S{sub:03d}R{run:02d}.edf")
             raw = mne.io.read_raw_edf(filePath, preload=True)
 
             if display:
                 raw.plot()
-                raw.plot_psd(average=True)
+                plt.gcf().suptitle(f"Raw Signal - Subject {sub}, Run {run}")
                 raw.plot_psd(average=False)
+                plt.gcf().suptitle(f"PSD (Per Channel) - Subject {sub},"
+                                   f" Run {run}")
+                raw.plot_psd(average=True)
+                plt.gcf().suptitle(f"PSD (Averaged) - Subject {sub},"
+                                   f" Run {run}")
                 plt.show()
 
             if raw.info['sfreq'] != 160.0:
@@ -93,6 +99,9 @@ def readDataset(
                         "standard_1020"
                     )
                     biosemi_montage.plot()
+                    plt.gcf().suptitle(f"Montage (Standard 10-20) - Subject"
+                                       f" {sub}")
+                    plt.show()
 
             raw.notch_filter(60, method="iir")
 
@@ -105,8 +114,14 @@ def readDataset(
 
             if display:
                 raw.plot()
-                raw.plot_psd(average=True)
+                plt.gcf().suptitle(f"Raw Signal Filtered - Subject {sub},"
+                                   f" Run {run}")
                 raw.plot_psd(average=False)
+                plt.gcf().suptitle(f"PSD (Per Channel) Filtered - "
+                                   f"Subject {sub}, Run {run}")
+                raw.plot_psd(average=True)
+                plt.gcf().suptitle(f"PSD (Averaged) Filtered - Subject {sub},"
+                                   f" Run {run}")
                 plt.show()
 
             events, _ = mne.events_from_annotations(

@@ -18,7 +18,7 @@ class Experiment:
 
 @dataclass
 class PreProcessConfiguration:
-    dataLocation: str = "/home/cgangaro/sgoinfre/mne_data"
+    dataLocation: str = ""
     makeMontage: bool = True
     montageShape: str = "standard_1020"
     resample: bool = True

@@ -65,7 +65,7 @@ def main():
                     average=True,
                     splitData=True
                 )
-            
+
             csp = CSP(n_components=8)
             lda = LinearDiscriminantAnalysis(solver="eigen", shrinkage='auto')
 
@@ -73,8 +73,6 @@ def main():
                 ("CSP", csp),
                 ("LDA", lda)
             ])
-
-            pipeline.fit(xTrainAvg, yTrainAvg)
 
             cv = ShuffleSplit(
                 n_splits=10,
@@ -89,6 +87,8 @@ def main():
                 cv=cv,
                 error_score='raise'
             )
+            pipeline.fit(xTrainAvg, yTrainAvg)
+
             print(f"Crossval scores: {score}\n")
 
             expData.append({
